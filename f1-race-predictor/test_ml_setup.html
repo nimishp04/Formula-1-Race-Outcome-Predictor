@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 ML Setup Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: #2a2a2a;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff4444; }
+        .warning { color: #ffaa00; }
+        button {
+            background: #00ff00;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+        pre {
+            background: #0a0a0a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 F1 ML Integration Test Suite</h1>
+    <p>This page tests if your ML model is properly integrated</p>
+
+    <!-- Test 1: API Health Check -->
+    <div class="test-section">
+        <h2>Test 1: API Server Connection</h2>
+        <button onclick="testAPIHealth()">🔌 Test API Connection</button>
+        <div id="apiHealthResult"></div>
+    </div>
+
+    <!-- Test 2: Model Info -->
+    <div class="test-section">
+        <h2>Test 2: Model Information</h2>
+        <button onclick="testModelInfo()">📊 Get Model Info</button>
+        <div id="modelInfoResult"></div>
+    </div>
+
+    <!-- Test 3: Make Prediction -->
+    <div class="test-section">
+        <h2>Test 3: Make Prediction</h2>
+        <button onclick="testPrediction()">🎯 Test Prediction</button>
+        <div id="predictionResult"></div>
+    </div>
+
+    <!-- Test 4: Script Loading -->
+    <div class="test-section">
+        <h2>Test 4: JavaScript Files</h2>
+        <button onclick="testScripts()">📜 Check Scripts</button>
+        <div id="scriptsResult"></div>
+    </div>
+
+    <!-- Summary -->
+    <div class="test-section">
+        <h2>📋 Setup Summary</h2>
+        <div id="summary">
+            <p>Run all tests above to diagnose issues</p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';
+        
+        function log(elementId, message, type = 'info') {
+            const el = document.getElementById(elementId);
+            const color = type === 'success' ? '#00ff00' : type === 'error' ? '#ff4444' : '#ffaa00';
+            el.innerHTML += `<p style="color: ${color};">${message}</p>`;
+        }
+        
+        // Test 1: API Health
+        async function testAPIHealth() {
+            const resultDiv = document.getElementById('apiHealthResult');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                
+                resultDiv.innerHTML = '';
+                log('apiHealthResult', '✅ API is reachable!', 'success');
+                log('apiHealthResult', `Status: ${data.status}`, 'success');
+                log('apiHealthResult', `Model Loaded: ${data.model_loaded}`, 'success');
+                log('apiHealthResult', `Scaler Loaded: ${data.scaler_loaded}`, 'success');
+                log('apiHealthResult', '<pre>' + JSON.stringify(data, null, 2) + '</pre>', 'info');
+                
+            } catch (error) {
+                resultDiv.innerHTML = '';
+                log('apiHealthResult', '❌ Cannot connect to API!', 'error');
+                log('apiHealthResult', `Error: ${error.message}`, 'error');
+                log('apiHealthResult', '', 'error');
+                log('apiHealthResult', '🔧 Make sure API is running:', 'warning');
+                log('apiHealthResult', 'python python/predict_api.py', 'warning');
+            }
+        }
+        
+        // Test 2: Model Info
+        async function testModelInfo() {
+            const resultDiv = document.getElementById('modelInfoResult');
+            resultDiv.innerHTML = '<p>Fetching model info...</p>';
+            
+            try {
+                const response = await fetch(`${API_URL}/model-info`);
+                const data = await response.json();
+                
+                resultDiv.innerHTML = '';
+                log('modelInfoResult', '✅ Model info retrieved!', 'success');
+                log('modelInfoResult', `Model: ${data.model}`, 'success');
+                log('modelInfoResult', `Accuracy: ${(data.info.accuracy * 100).toFixed(2)}%`, 'success');
+                log('modelInfoResult', `Features: ${data.features}`, 'success');
+                log('modelInfoResult', '<pre>' + JSON.stringify(data, null, 2) + '</pre>', 'info');
+                
+            } catch (error) {
+                resultDiv.innerHTML = '';
+                log('modelInfoResult', '❌ Failed to get model info', 'error');
+                log('modelInfoResult', `Error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test 3: Make Prediction
+        async function testPrediction() {
+            const resultDiv = document.getElementById('predictionResult');
+            resultDiv.innerHTML = '<p>Making prediction...</p>';
+            
+            const testData = {
+                gridPosition: 1,
+                driverAvgPos: 2.0,
+                recentWins: 3,
+                recentPodiums: 4,
+                constructorAvgPos: 1.5,
+                circuitAvgPos: 2.0,
+                fastestLapRate: 40,
+                finishRate: 95
+            };
+            
+            try {
+                const response = await fetch(`${API_URL}/predict`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = '';
+                log('predictionResult', '✅ Prediction successful!', 'success');
+                log('predictionResult', `Win Probability: ${data.predictions.win_probability_percent}%`, 'success');
+                log('predictionResult', `P1: ${data.predictions.podium.p1}%`, 'success');
+                log('predictionResult', `P2: ${data.predictions.podium.p2}%`, 'success');
+                log('predictionResult', `P3: ${data.predictions.podium.p3}%`, 'success');
+                log('predictionResult', '<pre>' + JSON.stringify(data, null, 2) + '</pre>', 'info');
+                
+            } catch (error) {
+                resultDiv.innerHTML = '';
+                log('predictionResult', '❌ Prediction failed', 'error');
+                log('predictionResult', `Error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test 4: Check Scripts
+        function testScripts() {
+            const resultDiv = document.getElementById('scriptsResult');
+            resultDiv.innerHTML = '';
+            
+            const requiredClasses = [
+                { name: 'CONFIG', desc: 'Configuration object' },
+                { name: 'F1Predictor', desc: 'Base predictor class' },
+                { name: 'F1PredictorML', desc: 'ML predictor class' },
+                { name: 'UIController', desc: 'Base UI controller' },
+                { name: 'UIControllerML', desc: 'ML UI controller' }
+            ];
+            
+            requiredClasses.forEach(({ name, desc }) => {
+                if (typeof window[name] !== 'undefined' || eval(`typeof ${name} !== 'undefined'`)) {
+                    log('scriptsResult', `✅ ${name} - ${desc}`, 'success');
+                } else {
+                    log('scriptsResult', `❌ ${name} - ${desc} NOT FOUND!`, 'error');
+                }
+            });
+            
+            // Check if predictor has ML methods
+            if (typeof predictor !== 'undefined') {
+                log('scriptsResult', '✅ predictor object exists', 'success');
+                
+                if (typeof predictor.predictPodiumWithML === 'function') {
+                    log('scriptsResult', '✅ predictor.predictPodiumWithML exists', 'success');
+                } else {
+                    log('scriptsResult', '❌ predictor.predictPodiumWithML NOT FOUND!', 'error');
+                    log('scriptsResult', '⚠️ predictor_ml.js may not be loaded correctly', 'warning');
+                }
+            } else {
+                log('scriptsResult', '❌ predictor object NOT FOUND!', 'error');
+            }
+        }
+        
+        // Run initial diagnostics
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('summary').innerHTML = `
+                    <p class="warning">🔍 Running automatic diagnostics...</p>
+                `;
+                
+                testScripts();
+                
+                setTimeout(() => {
+                    testAPIHealth();
+                }, 500);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

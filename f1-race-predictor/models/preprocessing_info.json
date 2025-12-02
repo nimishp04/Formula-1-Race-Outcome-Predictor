@@ -1,0 +1,6 @@
+{
+  "scaler": "StandardScaler",
+  "imputer": "SimpleImputer(strategy=median)",
+  "scaler_file": "scaler.pkl",
+  "imputer_file": "imputer.pkl"
+}

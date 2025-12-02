@@ -1,0 +1,2758 @@
+[
+  {
+    "id": 1,
+    "ref": "mclaren",
+    "name": "McLaren",
+    "nationality": "British",
+    "stats": {
+      "races": 1923,
+      "wins": 185,
+      "podiums": 508,
+      "winRate": 9.62,
+      "podiumRate": 26.42
+    }
+  },
+  {
+    "id": 2,
+    "ref": "bmw_sauber",
+    "name": "BMW Sauber",
+    "nationality": "German",
+    "stats": {
+      "races": 140,
+      "wins": 1,
+      "podiums": 17,
+      "winRate": 0.71,
+      "podiumRate": 12.14
+    }
+  },
+  {
+    "id": 3,
+    "ref": "williams",
+    "name": "Williams",
+    "nationality": "British",
+    "stats": {
+      "races": 1676,
+      "wins": 114,
+      "podiums": 314,
+      "winRate": 6.8,
+      "podiumRate": 18.74
+    }
+  },
+  {
+    "id": 4,
+    "ref": "renault",
+    "name": "Renault",
+    "nationality": "French",
+    "stats": {
+      "races": 787,
+      "wins": 35,
+      "podiums": 103,
+      "winRate": 4.45,
+      "podiumRate": 13.09
+    }
+  },
+  {
+    "id": 5,
+    "ref": "toro_rosso",
+    "name": "Toro Rosso",
+    "nationality": "Italian",
+    "stats": {
+      "races": 536,
+      "wins": 1,
+      "podiums": 3,
+      "winRate": 0.19,
+      "podiumRate": 0.56
+    }
+  },
+  {
+    "id": 6,
+    "ref": "ferrari",
+    "name": "Ferrari",
+    "nationality": "Italian",
+    "stats": {
+      "races": 2439,
+      "wins": 249,
+      "podiums": 841,
+      "winRate": 10.21,
+      "podiumRate": 34.48
+    }
+  },
+  {
+    "id": 7,
+    "ref": "toyota",
+    "name": "Toyota",
+    "nationality": "Japanese",
+    "stats": {
+      "races": 280,
+      "wins": 0,
+      "podiums": 13,
+      "winRate": 0.0,
+      "podiumRate": 4.64
+    }
+  },
+  {
+    "id": 8,
+    "ref": "super_aguri",
+    "name": "Super Aguri",
+    "nationality": "Japanese",
+    "stats": {
+      "races": 78,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 9,
+    "ref": "red_bull",
+    "name": "Red Bull",
+    "nationality": "Austrian",
+    "stats": {
+      "races": 788,
+      "wins": 122,
+      "podiums": 282,
+      "winRate": 15.48,
+      "podiumRate": 35.79
+    }
+  },
+  {
+    "id": 10,
+    "ref": "force_india",
+    "name": "Force India",
+    "nationality": "Indian",
+    "stats": {
+      "races": 424,
+      "wins": 0,
+      "podiums": 6,
+      "winRate": 0.0,
+      "podiumRate": 1.42
+    }
+  },
+  {
+    "id": 11,
+    "ref": "honda",
+    "name": "Honda",
+    "nationality": "Japanese",
+    "stats": {
+      "races": 152,
+      "wins": 3,
+      "podiums": 9,
+      "winRate": 1.97,
+      "podiumRate": 5.92
+    }
+  },
+  {
+    "id": 12,
+    "ref": "spyker",
+    "name": "Spyker",
+    "nationality": "Dutch",
+    "stats": {
+      "races": 34,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 13,
+    "ref": "mf1",
+    "name": "MF1",
+    "nationality": "Russian",
+    "stats": {
+      "races": 28,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 14,
+    "ref": "spyker_mf1",
+    "name": "Spyker MF1",
+    "nationality": "Dutch",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 15,
+    "ref": "sauber",
+    "name": "Sauber",
+    "nationality": "Swiss",
+    "stats": {
+      "races": 837,
+      "wins": 0,
+      "podiums": 10,
+      "winRate": 0.0,
+      "podiumRate": 1.19
+    }
+  },
+  {
+    "id": 16,
+    "ref": "bar",
+    "name": "BAR",
+    "nationality": "British",
+    "stats": {
+      "races": 236,
+      "wins": 0,
+      "podiums": 15,
+      "winRate": 0.0,
+      "podiumRate": 6.36
+    }
+  },
+  {
+    "id": 17,
+    "ref": "jordan",
+    "name": "Jordan",
+    "nationality": "Irish",
+    "stats": {
+      "races": 500,
+      "wins": 4,
+      "podiums": 19,
+      "winRate": 0.8,
+      "podiumRate": 3.8
+    }
+  },
+  {
+    "id": 18,
+    "ref": "minardi",
+    "name": "Minardi",
+    "nationality": "Italian",
+    "stats": {
+      "races": 672,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 19,
+    "ref": "jaguar",
+    "name": "Jaguar",
+    "nationality": "British",
+    "stats": {
+      "races": 170,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 1.18
+    }
+  },
+  {
+    "id": 20,
+    "ref": "prost",
+    "name": "Prost",
+    "nationality": "French",
+    "stats": {
+      "races": 165,
+      "wins": 0,
+      "podiums": 3,
+      "winRate": 0.0,
+      "podiumRate": 1.82
+    }
+  },
+  {
+    "id": 21,
+    "ref": "arrows",
+    "name": "Arrows",
+    "nationality": "British",
+    "stats": {
+      "races": 590,
+      "wins": 0,
+      "podiums": 8,
+      "winRate": 0.0,
+      "podiumRate": 1.36
+    }
+  },
+  {
+    "id": 22,
+    "ref": "benetton",
+    "name": "Benetton",
+    "nationality": "Italian",
+    "stats": {
+      "races": 520,
+      "wins": 27,
+      "podiums": 102,
+      "winRate": 5.19,
+      "podiumRate": 19.62
+    }
+  },
+  {
+    "id": 23,
+    "ref": "brawn",
+    "name": "Brawn",
+    "nationality": "British",
+    "stats": {
+      "races": 34,
+      "wins": 8,
+      "podiums": 15,
+      "winRate": 23.53,
+      "podiumRate": 44.12
+    }
+  },
+  {
+    "id": 24,
+    "ref": "stewart",
+    "name": "Stewart",
+    "nationality": "British",
+    "stats": {
+      "races": 98,
+      "wins": 1,
+      "podiums": 5,
+      "winRate": 1.02,
+      "podiumRate": 5.1
+    }
+  },
+  {
+    "id": 25,
+    "ref": "tyrrell",
+    "name": "Tyrrell",
+    "nationality": "British",
+    "stats": {
+      "races": 881,
+      "wins": 23,
+      "podiums": 77,
+      "winRate": 2.61,
+      "podiumRate": 8.74
+    }
+  },
+  {
+    "id": 26,
+    "ref": "lola",
+    "name": "Lola",
+    "nationality": "British",
+    "stats": {
+      "races": 165,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 1.21
+    }
+  },
+  {
+    "id": 27,
+    "ref": "ligier",
+    "name": "Ligier",
+    "nationality": "French",
+    "stats": {
+      "races": 611,
+      "wins": 9,
+      "podiums": 50,
+      "winRate": 1.47,
+      "podiumRate": 8.18
+    }
+  },
+  {
+    "id": 28,
+    "ref": "forti",
+    "name": "Forti",
+    "nationality": "Italian",
+    "stats": {
+      "races": 54,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 29,
+    "ref": "footwork",
+    "name": "Footwork",
+    "nationality": "British",
+    "stats": {
+      "races": 194,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 0.52
+    }
+  },
+  {
+    "id": 30,
+    "ref": "pacific",
+    "name": "Pacific",
+    "nationality": "British",
+    "stats": {
+      "races": 66,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 31,
+    "ref": "simtek",
+    "name": "Simtek",
+    "nationality": "British",
+    "stats": {
+      "races": 40,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 32,
+    "ref": "team_lotus",
+    "name": "Team Lotus",
+    "nationality": "British",
+    "stats": {
+      "races": 871,
+      "wins": 45,
+      "podiums": 114,
+      "winRate": 5.17,
+      "podiumRate": 13.09
+    }
+  },
+  {
+    "id": 33,
+    "ref": "larrousse",
+    "name": "Larrousse",
+    "nationality": "French",
+    "stats": {
+      "races": 216,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 0.46
+    }
+  },
+  {
+    "id": 34,
+    "ref": "brabham",
+    "name": "Brabham",
+    "nationality": "British",
+    "stats": {
+      "races": 662,
+      "wins": 23,
+      "podiums": 78,
+      "winRate": 3.47,
+      "podiumRate": 11.78
+    }
+  },
+  {
+    "id": 35,
+    "ref": "dallara",
+    "name": "Dallara",
+    "nationality": "Italian",
+    "stats": {
+      "races": 144,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 1.39
+    }
+  },
+  {
+    "id": 36,
+    "ref": "fondmetal",
+    "name": "Fondmetal",
+    "nationality": "Italian",
+    "stats": {
+      "races": 42,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 37,
+    "ref": "march",
+    "name": "March",
+    "nationality": "British",
+    "stats": {
+      "races": 524,
+      "wins": 3,
+      "podiums": 16,
+      "winRate": 0.57,
+      "podiumRate": 3.05
+    }
+  },
+  {
+    "id": 38,
+    "ref": "moda",
+    "name": "Andrea Moda",
+    "nationality": "Italian",
+    "stats": {
+      "races": 15,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 39,
+    "ref": "ags",
+    "name": "AGS",
+    "nationality": "French",
+    "stats": {
+      "races": 123,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 40,
+    "ref": "lambo",
+    "name": "Lambo",
+    "nationality": "Italian",
+    "stats": {
+      "races": 32,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 41,
+    "ref": "leyton",
+    "name": "Leyton House",
+    "nationality": "British",
+    "stats": {
+      "races": 64,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 1.56
+    }
+  },
+  {
+    "id": 42,
+    "ref": "coloni",
+    "name": "Coloni",
+    "nationality": "Italian",
+    "stats": {
+      "races": 81,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 44,
+    "ref": "eurobrun",
+    "name": "Euro Brun",
+    "nationality": "Italian",
+    "stats": {
+      "races": 76,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 45,
+    "ref": "osella",
+    "name": "Osella",
+    "nationality": "Italian",
+    "stats": {
+      "races": 252,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 46,
+    "ref": "onyx",
+    "name": "Onyx",
+    "nationality": "British",
+    "stats": {
+      "races": 52,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 1.92
+    }
+  },
+  {
+    "id": 47,
+    "ref": "life",
+    "name": "Life",
+    "nationality": "Italian",
+    "stats": {
+      "races": 14,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 48,
+    "ref": "rial",
+    "name": "Rial",
+    "nationality": "German",
+    "stats": {
+      "races": 48,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 49,
+    "ref": "zakspeed",
+    "name": "Zakspeed",
+    "nationality": "German",
+    "stats": {
+      "races": 133,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 50,
+    "ref": "ram",
+    "name": "RAM",
+    "nationality": "British",
+    "stats": {
+      "races": 71,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 51,
+    "ref": "alfa",
+    "name": "Alfa Romeo",
+    "nationality": "Swiss",
+    "stats": {
+      "races": 451,
+      "wins": 11,
+      "podiums": 28,
+      "winRate": 2.44,
+      "podiumRate": 6.21
+    }
+  },
+  {
+    "id": 52,
+    "ref": "spirit",
+    "name": "Spirit",
+    "nationality": "British",
+    "stats": {
+      "races": 25,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 53,
+    "ref": "toleman",
+    "name": "Toleman",
+    "nationality": "British",
+    "stats": {
+      "races": 131,
+      "wins": 0,
+      "podiums": 3,
+      "winRate": 0.0,
+      "podiumRate": 2.29
+    }
+  },
+  {
+    "id": 54,
+    "ref": "ats",
+    "name": "ATS",
+    "nationality": "Italian",
+    "stats": {
+      "races": 162,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 55,
+    "ref": "theodore",
+    "name": "Theodore",
+    "nationality": "Hong Kong",
+    "stats": {
+      "races": 64,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 56,
+    "ref": "fittipaldi",
+    "name": "Fittipaldi",
+    "nationality": "Brazilian",
+    "stats": {
+      "races": 155,
+      "wins": 0,
+      "podiums": 3,
+      "winRate": 0.0,
+      "podiumRate": 1.94
+    }
+  },
+  {
+    "id": 57,
+    "ref": "ensign",
+    "name": "Ensign",
+    "nationality": "British",
+    "stats": {
+      "races": 154,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 58,
+    "ref": "shadow",
+    "name": "Shadow",
+    "nationality": "British",
+    "stats": {
+      "races": 211,
+      "wins": 1,
+      "podiums": 6,
+      "winRate": 0.47,
+      "podiumRate": 2.84
+    }
+  },
+  {
+    "id": 59,
+    "ref": "wolf",
+    "name": "Wolf",
+    "nationality": "Canadian",
+    "stats": {
+      "races": 79,
+      "wins": 3,
+      "podiums": 13,
+      "winRate": 3.8,
+      "podiumRate": 16.46
+    }
+  },
+  {
+    "id": 60,
+    "ref": "merzario",
+    "name": "Merzario",
+    "nationality": "Italian",
+    "stats": {
+      "races": 32,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 61,
+    "ref": "kauhsen",
+    "name": "Kauhsen",
+    "nationality": "German",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 62,
+    "ref": "rebaque",
+    "name": "Rebaque",
+    "nationality": "Mexican",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 63,
+    "ref": "surtees",
+    "name": "Surtees",
+    "nationality": "British",
+    "stats": {
+      "races": 260,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 0.77
+    }
+  },
+  {
+    "id": 64,
+    "ref": "hesketh",
+    "name": "Hesketh",
+    "nationality": "British",
+    "stats": {
+      "races": 97,
+      "wins": 1,
+      "podiums": 7,
+      "winRate": 1.03,
+      "podiumRate": 7.22
+    }
+  },
+  {
+    "id": 65,
+    "ref": "martini",
+    "name": "Martini",
+    "nationality": "French",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 66,
+    "ref": "brm",
+    "name": "BRM",
+    "nationality": "British",
+    "stats": {
+      "races": 562,
+      "wins": 17,
+      "podiums": 61,
+      "winRate": 3.02,
+      "podiumRate": 10.85
+    }
+  },
+  {
+    "id": 67,
+    "ref": "penske",
+    "name": "Penske",
+    "nationality": "American",
+    "stats": {
+      "races": 46,
+      "wins": 1,
+      "podiums": 3,
+      "winRate": 2.17,
+      "podiumRate": 6.52
+    }
+  },
+  {
+    "id": 68,
+    "ref": "lec",
+    "name": "LEC",
+    "nationality": "British",
+    "stats": {
+      "races": 5,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 69,
+    "ref": "mcguire",
+    "name": "McGuire",
+    "nationality": "Australian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 70,
+    "ref": "boro",
+    "name": "Boro",
+    "nationality": "Dutch",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 71,
+    "ref": "apollon",
+    "name": "Apollon",
+    "nationality": "Swiss",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 72,
+    "ref": "kojima",
+    "name": "Kojima",
+    "nationality": "Japanese",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 73,
+    "ref": "parnelli",
+    "name": "Parnelli",
+    "nationality": "American",
+    "stats": {
+      "races": 16,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 74,
+    "ref": "maki",
+    "name": "Maki",
+    "nationality": "Japanese",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 75,
+    "ref": "hill",
+    "name": "Embassy Hill",
+    "nationality": "British",
+    "stats": {
+      "races": 19,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 76,
+    "ref": "lyncar",
+    "name": "Lyncar",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 77,
+    "ref": "trojan",
+    "name": "Trojan",
+    "nationality": "British",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 78,
+    "ref": "amon",
+    "name": "Amon",
+    "nationality": "New Zealander",
+    "stats": {
+      "races": 5,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 79,
+    "ref": "token",
+    "name": "Token",
+    "nationality": "British",
+    "stats": {
+      "races": 4,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 80,
+    "ref": "iso_marlboro",
+    "name": "Iso Marlboro",
+    "nationality": "British",
+    "stats": {
+      "races": 55,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 81,
+    "ref": "tecno",
+    "name": "Tecno",
+    "nationality": "Italian",
+    "stats": {
+      "races": 11,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 82,
+    "ref": "matra",
+    "name": "Matra",
+    "nationality": "French",
+    "stats": {
+      "races": 71,
+      "wins": 0,
+      "podiums": 6,
+      "winRate": 0.0,
+      "podiumRate": 8.45
+    }
+  },
+  {
+    "id": 83,
+    "ref": "politoys",
+    "name": "Politoys",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 84,
+    "ref": "connew",
+    "name": "Connew",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 85,
+    "ref": "bellasi",
+    "name": "Bellasi",
+    "nationality": "Swiss",
+    "stats": {
+      "races": 6,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 86,
+    "ref": "tomaso",
+    "name": "De Tomaso",
+    "nationality": "Italian",
+    "stats": {
+      "races": 14,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 87,
+    "ref": "cooper",
+    "name": "Cooper",
+    "nationality": "British",
+    "stats": {
+      "races": 103,
+      "wins": 2,
+      "podiums": 6,
+      "winRate": 1.94,
+      "podiumRate": 5.83
+    }
+  },
+  {
+    "id": 88,
+    "ref": "eagle",
+    "name": "Eagle",
+    "nationality": "American",
+    "stats": {
+      "races": 0,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0,
+      "podiumRate": 0
+    }
+  },
+  {
+    "id": 89,
+    "ref": "lds",
+    "name": "LDS",
+    "nationality": "South African",
+    "stats": {
+      "races": 4,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 90,
+    "ref": "protos",
+    "name": "Protos",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 91,
+    "ref": "shannon",
+    "name": "Shannon",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 92,
+    "ref": "scirocco",
+    "name": "Scirocco",
+    "nationality": "British",
+    "stats": {
+      "races": 17,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 93,
+    "ref": "re",
+    "name": "RE",
+    "nationality": "Rhodesian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 94,
+    "ref": "brp",
+    "name": "BRP",
+    "nationality": "British",
+    "stats": {
+      "races": 19,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 95,
+    "ref": "porsche",
+    "name": "Porsche",
+    "nationality": "German",
+    "stats": {
+      "races": 84,
+      "wins": 1,
+      "podiums": 5,
+      "winRate": 1.19,
+      "podiumRate": 5.95
+    }
+  },
+  {
+    "id": 96,
+    "ref": "derrington",
+    "name": "Derrington",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 97,
+    "ref": "gilby",
+    "name": "Gilby",
+    "nationality": "British",
+    "stats": {
+      "races": 7,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 98,
+    "ref": "stebro",
+    "name": "Stebro",
+    "nationality": "Canadian",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 99,
+    "ref": "emeryson",
+    "name": "Emeryson",
+    "nationality": "British",
+    "stats": {
+      "races": 11,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 100,
+    "ref": "enb",
+    "name": "ENB",
+    "nationality": "Belgian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 101,
+    "ref": "jbw",
+    "name": "JBW",
+    "nationality": "British",
+    "stats": {
+      "races": 6,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 102,
+    "ref": "ferguson",
+    "name": "Ferguson",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 103,
+    "ref": "mbm",
+    "name": "MBM",
+    "nationality": "Swiss",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 104,
+    "ref": "behra-porsche",
+    "name": "Behra-Porsche",
+    "nationality": "Italian",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 105,
+    "ref": "maserati",
+    "name": "Maserati",
+    "nationality": "Italian",
+    "stats": {
+      "races": 436,
+      "wins": 9,
+      "podiums": 40,
+      "winRate": 2.06,
+      "podiumRate": 9.17
+    }
+  },
+  {
+    "id": 106,
+    "ref": "scarab",
+    "name": "Scarab",
+    "nationality": "American",
+    "stats": {
+      "races": 9,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 107,
+    "ref": "watson",
+    "name": "Watson",
+    "nationality": "American",
+    "stats": {
+      "races": 22,
+      "wins": 3,
+      "podiums": 5,
+      "winRate": 13.64,
+      "podiumRate": 22.73
+    }
+  },
+  {
+    "id": 108,
+    "ref": "epperly",
+    "name": "Epperly",
+    "nationality": "American",
+    "stats": {
+      "races": 17,
+      "wins": 2,
+      "podiums": 5,
+      "winRate": 11.76,
+      "podiumRate": 29.41
+    }
+  },
+  {
+    "id": 109,
+    "ref": "phillips",
+    "name": "Phillips",
+    "nationality": "American",
+    "stats": {
+      "races": 7,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 14.29
+    }
+  },
+  {
+    "id": 110,
+    "ref": "lesovsky",
+    "name": "Lesovsky",
+    "nationality": "American",
+    "stats": {
+      "races": 15,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 6.67
+    }
+  },
+  {
+    "id": 111,
+    "ref": "trevis",
+    "name": "Trevis",
+    "nationality": "American",
+    "stats": {
+      "races": 6,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 112,
+    "ref": "meskowski",
+    "name": "Meskowski",
+    "nationality": "American",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 113,
+    "ref": "kurtis_kraft",
+    "name": "Kurtis Kraft",
+    "nationality": "American",
+    "stats": {
+      "races": 226,
+      "wins": 5,
+      "podiums": 19,
+      "winRate": 2.21,
+      "podiumRate": 8.41
+    }
+  },
+  {
+    "id": 114,
+    "ref": "kuzma",
+    "name": "Kuzma",
+    "nationality": "American",
+    "stats": {
+      "races": 39,
+      "wins": 1,
+      "podiums": 3,
+      "winRate": 2.56,
+      "podiumRate": 7.69
+    }
+  },
+  {
+    "id": 115,
+    "ref": "vhristensen",
+    "name": "Christensen",
+    "nationality": "American",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 116,
+    "ref": "ewing",
+    "name": "Ewing",
+    "nationality": "American",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 117,
+    "ref": "aston_martin",
+    "name": "Aston Martin",
+    "nationality": "British",
+    "stats": {
+      "races": 191,
+      "wins": 0,
+      "podiums": 9,
+      "winRate": 0.0,
+      "podiumRate": 4.71
+    }
+  },
+  {
+    "id": 118,
+    "ref": "vanwall",
+    "name": "Vanwall",
+    "nationality": "British",
+    "stats": {
+      "races": 71,
+      "wins": 10,
+      "podiums": 14,
+      "winRate": 14.08,
+      "podiumRate": 19.72
+    }
+  },
+  {
+    "id": 119,
+    "ref": "moore",
+    "name": "Moore",
+    "nationality": "American",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 120,
+    "ref": "dunn",
+    "name": "Dunn",
+    "nationality": "American",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 121,
+    "ref": "elder",
+    "name": "Elder",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 122,
+    "ref": "sutton",
+    "name": "Sutton",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 123,
+    "ref": "fry",
+    "name": "Fry",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 124,
+    "ref": "tec-mec",
+    "name": "Tec-Mec",
+    "nationality": "Italian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 125,
+    "ref": "connaught",
+    "name": "Connaught",
+    "nationality": "British",
+    "stats": {
+      "races": 54,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 1.85
+    }
+  },
+  {
+    "id": 126,
+    "ref": "alta",
+    "name": "Alta",
+    "nationality": "British",
+    "stats": {
+      "races": 6,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 127,
+    "ref": "osca",
+    "name": "OSCA",
+    "nationality": "Italian",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 128,
+    "ref": "gordini",
+    "name": "Gordini",
+    "nationality": "French",
+    "stats": {
+      "races": 102,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 1.96
+    }
+  },
+  {
+    "id": 129,
+    "ref": "stevens",
+    "name": "Stevens",
+    "nationality": "American",
+    "stats": {
+      "races": 10,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 130,
+    "ref": "bugatti",
+    "name": "Bugatti",
+    "nationality": "French",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 131,
+    "ref": "mercedes",
+    "name": "Mercedes",
+    "nationality": "German",
+    "stats": {
+      "races": 652,
+      "wins": 129,
+      "podiums": 298,
+      "winRate": 19.79,
+      "podiumRate": 45.71
+    }
+  },
+  {
+    "id": 132,
+    "ref": "lancia",
+    "name": "Lancia",
+    "nationality": "Italian",
+    "stats": {
+      "races": 11,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 9.09
+    }
+  },
+  {
+    "id": 133,
+    "ref": "hwm",
+    "name": "HWM",
+    "nationality": "British",
+    "stats": {
+      "races": 47,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 134,
+    "ref": "schroeder",
+    "name": "Schroeder",
+    "nationality": "American",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 135,
+    "ref": "pawl",
+    "name": "Pawl",
+    "nationality": "American",
+    "stats": {
+      "races": 4,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 136,
+    "ref": "pankratz",
+    "name": "Pankratz",
+    "nationality": "American",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 137,
+    "ref": "arzani-volpini",
+    "name": "Arzani-Volpini",
+    "nationality": "Italian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 138,
+    "ref": "nichels",
+    "name": "Nichels",
+    "nationality": "American",
+    "stats": {
+      "races": 4,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 139,
+    "ref": "bromme",
+    "name": "Bromme",
+    "nationality": "American",
+    "stats": {
+      "races": 5,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 140,
+    "ref": "klenk",
+    "name": "Klenk",
+    "nationality": "German",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 141,
+    "ref": "simca",
+    "name": "Simca",
+    "nationality": "French",
+    "stats": {
+      "races": 29,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 142,
+    "ref": "turner",
+    "name": "Turner",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 143,
+    "ref": "del_roy",
+    "name": "Del Roy",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 144,
+    "ref": "veritas",
+    "name": "Veritas",
+    "nationality": "German",
+    "stats": {
+      "races": 18,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 145,
+    "ref": "bmw",
+    "name": "BMW",
+    "nationality": "German",
+    "stats": {
+      "races": 6,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 146,
+    "ref": "emw",
+    "name": "EMW",
+    "nationality": "East German",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 147,
+    "ref": "afm",
+    "name": "AFM",
+    "nationality": "German",
+    "stats": {
+      "races": 7,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 148,
+    "ref": "frazer_nash",
+    "name": "Frazer Nash",
+    "nationality": "British",
+    "stats": {
+      "races": 4,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 149,
+    "ref": "sherman",
+    "name": "Sherman",
+    "nationality": "American",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 150,
+    "ref": "deidt",
+    "name": "Deidt",
+    "nationality": "American",
+    "stats": {
+      "races": 8,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 25.0
+    }
+  },
+  {
+    "id": 151,
+    "ref": "era",
+    "name": "ERA",
+    "nationality": "British",
+    "stats": {
+      "races": 13,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 152,
+    "ref": "butterworth",
+    "name": "Aston Butterworth",
+    "nationality": "British",
+    "stats": {
+      "races": 4,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 153,
+    "ref": "cisitalia",
+    "name": "Cisitalia",
+    "nationality": "Italian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 154,
+    "ref": "lago",
+    "name": "Talbot-Lago",
+    "nationality": "French",
+    "stats": {
+      "races": 82,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 2.44
+    }
+  },
+  {
+    "id": 155,
+    "ref": "hall",
+    "name": "Hall",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 156,
+    "ref": "marchese",
+    "name": "Marchese",
+    "nationality": "American",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 157,
+    "ref": "langley",
+    "name": "Langley",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 158,
+    "ref": "rae",
+    "name": "Rae",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 159,
+    "ref": "olson",
+    "name": "Olson",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 160,
+    "ref": "wetteroth",
+    "name": "Wetteroth",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 161,
+    "ref": "adams",
+    "name": "Adams",
+    "nationality": "American",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 162,
+    "ref": "snowberger",
+    "name": "Snowberger",
+    "nationality": "American",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 163,
+    "ref": "milano",
+    "name": "Milano",
+    "nationality": "Italian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 164,
+    "ref": "hrt",
+    "name": "HRT",
+    "nationality": "Spanish",
+    "stats": {
+      "races": 116,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 167,
+    "ref": "cooper-maserati",
+    "name": "Cooper-Maserati",
+    "nationality": "British",
+    "stats": {
+      "races": 134,
+      "wins": 2,
+      "podiums": 7,
+      "winRate": 1.49,
+      "podiumRate": 5.22
+    }
+  },
+  {
+    "id": 166,
+    "ref": "virgin",
+    "name": "Virgin",
+    "nationality": "British",
+    "stats": {
+      "races": 76,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 168,
+    "ref": "cooper-osca",
+    "name": "Cooper-OSCA",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 169,
+    "ref": "cooper-borgward",
+    "name": "Cooper-Borgward",
+    "nationality": "British",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 170,
+    "ref": "cooper-climax",
+    "name": "Cooper-Climax",
+    "nationality": "British",
+    "stats": {
+      "races": 268,
+      "wins": 12,
+      "podiums": 44,
+      "winRate": 4.48,
+      "podiumRate": 16.42
+    }
+  },
+  {
+    "id": 171,
+    "ref": "cooper-castellotti",
+    "name": "Cooper-Castellotti",
+    "nationality": "British",
+    "stats": {
+      "races": 6,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 172,
+    "ref": "lotus-climax",
+    "name": "Lotus-Climax",
+    "nationality": "British",
+    "stats": {
+      "races": 233,
+      "wins": 22,
+      "podiums": 31,
+      "winRate": 9.44,
+      "podiumRate": 13.3
+    }
+  },
+  {
+    "id": 173,
+    "ref": "lotus-maserati",
+    "name": "Lotus-Maserati",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 174,
+    "ref": "de_tomaso-osca",
+    "name": "De Tomaso-Osca",
+    "nationality": "Italian",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 175,
+    "ref": "de_tomaso-alfa_romeo",
+    "name": "De Tomaso-Alfa Romeo",
+    "nationality": "Italian",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 176,
+    "ref": "lotus-brm",
+    "name": "Lotus-BRM",
+    "nationality": "British",
+    "stats": {
+      "races": 121,
+      "wins": 1,
+      "podiums": 2,
+      "winRate": 0.83,
+      "podiumRate": 1.65
+    }
+  },
+  {
+    "id": 177,
+    "ref": "lotus-borgward",
+    "name": "Lotus-Borgward",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 178,
+    "ref": "cooper-alfa_romeo",
+    "name": "Cooper-Alfa Romeo",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 179,
+    "ref": "de_tomaso-ferrari",
+    "name": "De Tomaso-Ferrari",
+    "nationality": "Italian",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 180,
+    "ref": "lotus-ford",
+    "name": "Lotus-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 128,
+      "wins": 11,
+      "podiums": 25,
+      "winRate": 8.59,
+      "podiumRate": 19.53
+    }
+  },
+  {
+    "id": 181,
+    "ref": "brabham-brm",
+    "name": "Brabham-BRM",
+    "nationality": "British",
+    "stats": {
+      "races": 41,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 2.44
+    }
+  },
+  {
+    "id": 182,
+    "ref": "brabham-ford",
+    "name": "Brabham-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 58,
+      "wins": 2,
+      "podiums": 9,
+      "winRate": 3.45,
+      "podiumRate": 15.52
+    }
+  },
+  {
+    "id": 183,
+    "ref": "brabham-climax",
+    "name": "Brabham-Climax",
+    "nationality": "British",
+    "stats": {
+      "races": 93,
+      "wins": 2,
+      "podiums": 11,
+      "winRate": 2.15,
+      "podiumRate": 11.83
+    }
+  },
+  {
+    "id": 184,
+    "ref": "lds-climax",
+    "name": "LDS-Climax",
+    "nationality": "South African",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 185,
+    "ref": "lds-alfa_romeo",
+    "name": "LDS-Alfa Romeo",
+    "nationality": "South African",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 186,
+    "ref": "cooper-ford",
+    "name": "Cooper-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 187,
+    "ref": "mclaren-ford",
+    "name": "McLaren-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 87,
+      "wins": 4,
+      "podiums": 16,
+      "winRate": 4.6,
+      "podiumRate": 18.39
+    }
+  },
+  {
+    "id": 188,
+    "ref": "mclaren-seren",
+    "name": "McLaren-Serenissima",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 189,
+    "ref": "eagle-climax",
+    "name": "Eagle-Climax",
+    "nationality": "American",
+    "stats": {
+      "races": 13,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 190,
+    "ref": "eagle-weslake",
+    "name": "Eagle-Weslake",
+    "nationality": "American",
+    "stats": {
+      "races": 21,
+      "wins": 1,
+      "podiums": 2,
+      "winRate": 4.76,
+      "podiumRate": 9.52
+    }
+  },
+  {
+    "id": 191,
+    "ref": "brabham-repco",
+    "name": "Brabham-Repco",
+    "nationality": "British",
+    "stats": {
+      "races": 77,
+      "wins": 8,
+      "podiums": 25,
+      "winRate": 10.39,
+      "podiumRate": 32.47
+    }
+  },
+  {
+    "id": 192,
+    "ref": "cooper-ferrari",
+    "name": "Cooper-Ferrari",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 193,
+    "ref": "cooper-ats",
+    "name": "Cooper-ATS",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 194,
+    "ref": "mclaren-brm",
+    "name": "McLaren-BRM",
+    "nationality": "British",
+    "stats": {
+      "races": 14,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 195,
+    "ref": "cooper-brm",
+    "name": "Cooper-BRM",
+    "nationality": "British",
+    "stats": {
+      "races": 21,
+      "wins": 0,
+      "podiums": 2,
+      "winRate": 0.0,
+      "podiumRate": 9.52
+    }
+  },
+  {
+    "id": 196,
+    "ref": "matra-ford",
+    "name": "Matra-Ford",
+    "nationality": "French",
+    "stats": {
+      "races": 40,
+      "wins": 9,
+      "podiums": 15,
+      "winRate": 22.5,
+      "podiumRate": 37.5
+    }
+  },
+  {
+    "id": 197,
+    "ref": "brm-ford",
+    "name": "BRM-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 1,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 198,
+    "ref": "mclaren-alfa_romeo",
+    "name": "McLaren-Alfa Romeo",
+    "nationality": "British",
+    "stats": {
+      "races": 11,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 199,
+    "ref": "march-alfa_romeo",
+    "name": "March-Alfa Romeo",
+    "nationality": "British",
+    "stats": {
+      "races": 10,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 200,
+    "ref": "march-ford",
+    "name": "March-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 43,
+      "wins": 0,
+      "podiums": 5,
+      "winRate": 0.0,
+      "podiumRate": 11.63
+    }
+  },
+  {
+    "id": 201,
+    "ref": "lotus-pw",
+    "name": "Lotus-Pratt &amp; Whitney",
+    "nationality": "British",
+    "stats": {
+      "races": 3,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 202,
+    "ref": "shadow-ford",
+    "name": "Shadow-Ford",
+    "nationality": "British",
+    "stats": {
+      "races": 26,
+      "wins": 0,
+      "podiums": 1,
+      "winRate": 0.0,
+      "podiumRate": 3.85
+    }
+  },
+  {
+    "id": 203,
+    "ref": "shadow-matra",
+    "name": "Shadow-Matra",
+    "nationality": "British",
+    "stats": {
+      "races": 2,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 204,
+    "ref": "brabham-alfa_romeo",
+    "name": "Brabham-Alfa Romeo",
+    "nationality": "British",
+    "stats": {
+      "races": 59,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 205,
+    "ref": "lotus_racing",
+    "name": "Lotus",
+    "nationality": "Malaysian",
+    "stats": {
+      "races": 76,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 206,
+    "ref": "marussia",
+    "name": "Marussia",
+    "nationality": "Russian",
+    "stats": {
+      "races": 109,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 207,
+    "ref": "caterham",
+    "name": "Caterham",
+    "nationality": "Malaysian",
+    "stats": {
+      "races": 112,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 208,
+    "ref": "lotus_f1",
+    "name": "Lotus F1",
+    "nationality": "British",
+    "stats": {
+      "races": 154,
+      "wins": 2,
+      "podiums": 25,
+      "winRate": 1.3,
+      "podiumRate": 16.23
+    }
+  },
+  {
+    "id": 209,
+    "ref": "manor",
+    "name": "Manor Marussia",
+    "nationality": "British",
+    "stats": {
+      "races": 78,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 210,
+    "ref": "haas",
+    "name": "Haas F1 Team",
+    "nationality": "American",
+    "stats": {
+      "races": 380,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  },
+  {
+    "id": 211,
+    "ref": "racing_point",
+    "name": "Racing Point",
+    "nationality": "British",
+    "stats": {
+      "races": 76,
+      "wins": 1,
+      "podiums": 4,
+      "winRate": 1.32,
+      "podiumRate": 5.26
+    }
+  },
+  {
+    "id": 213,
+    "ref": "alphatauri",
+    "name": "AlphaTauri",
+    "nationality": "Italian",
+    "stats": {
+      "races": 166,
+      "wins": 1,
+      "podiums": 2,
+      "winRate": 0.6,
+      "podiumRate": 1.2
+    }
+  },
+  {
+    "id": 214,
+    "ref": "alpine",
+    "name": "Alpine F1 Team",
+    "nationality": "French",
+    "stats": {
+      "races": 180,
+      "wins": 1,
+      "podiums": 6,
+      "winRate": 0.56,
+      "podiumRate": 3.33
+    }
+  },
+  {
+    "id": 215,
+    "ref": "rb",
+    "name": "RB F1 Team",
+    "nationality": "Italian",
+    "stats": {
+      "races": 48,
+      "wins": 0,
+      "podiums": 0,
+      "winRate": 0.0,
+      "podiumRate": 0.0
+    }
+  }
+]

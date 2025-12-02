@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced F1 Race Prediction System">
+    <meta name="author" content="Your Name">
+    <title>F1 Race Predictor v2.0</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <img src="assets/images/logo.png" alt="F1 Logo" class="logo">
+                <h1 class="title">Advanced F1 Prediction System</h1>
+                <p class="subtitle">Neural Network-Inspired Model • Enhanced Features • Podium Predictions</p>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <section class="stats-grid">
+            <div class="stat-card stat-blue">
+                <p class="stat-value">91.87%</p>
+                <p class="stat-label">Accuracy</p>
+            </div>
+            <div class="stat-card stat-green">
+                <p class="stat-value">75.8%</p>
+                <p class="stat-label">Win Recall</p>
+            </div>
+            <div class="stat-card stat-purple">
+                <p class="stat-value">87.3%</p>
+                <p class="stat-label">Podium Acc</p>
+            </div>
+            <div class="stat-card stat-yellow">
+                <p class="stat-value">25K+</p>
+                <p class="stat-label">Data Points</p>
+            </div>
+            <div class="stat-card stat-red">
+                <p class="stat-value">14</p>
+                <p class="stat-label">Features</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-grid">
+            <!-- Core Performance -->
+            <section class="panel">
+                <h2 class="panel-title">⚙️ Core Performance</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="gridPosition">Grid Position</label>
+                        <input type="range" id="gridPosition" min="1" max="20" value="1">
+                        <div class="input-display" id="gridDisplay">P1</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="qualifyingGap">Qualifying Gap (seconds)</label>
+                        <input type="range" id="qualifyingGap" min="0" max="2" step="0.1" value="0.1">
+                        <div class="input-display" id="qualGapDisplay">0.10s</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="driverAvgPos">Driver Avg Position (L5)</label>
+                        <input type="range" id="driverAvgPos" min="1" max="20" value="2">
+                        <div class="input-display" id="driverAvgDisplay">2.0</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="recentWins">Recent Wins (L5)</label>
+                        <input type="range" id="recentWins" min="0" max="5" value="2">
+                        <div class="input-display" id="winsDisplay">2</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="recentPodiums">Recent Podiums (L5)</label>
+                        <input type="range" id="recentPodiums" min="0" max="5" value="4">
+                        <div class="input-display" id="podiumsDisplay">4</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="fastestLapRate">Fastest Lap Rate (%)</label>
+                        <input type="range" id="fastestLapRate" min="0" max="100" value="30">
+                        <div class="input-display" id="fastestLapDisplay">30%</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team & Championship -->
+            <section class="panel">
+                <h2 class="panel-title">👥 Team & Championship</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="constructorAvgPos">Constructor Avg Pos (L5)</label>
+                        <input type="range" id="constructorAvgPos" min="1" max="20" value="1">
+                        <div class="input-display" id="constructorDisplay">1.0</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="teamMatePosition">Teammate Grid Position</label>
+                        <input type="range" id="teamMatePosition" min="1" max="20" value="3">
+                        <div class="input-display" id="teammateDisplay">P3</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="finishRate">Finish Rate (%)</label>
+                        <input type="range" id="finishRate" min="50" max="100" value="95">
+                        <div class="input-display" id="finishDisplay">95%</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="championshipPosition">Championship Position</label>
+                        <input type="range" id="championshipPosition" min="1" max="20" value="1">
+                        <div class="input-display" id="champDisplay">P1</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="pointsGap">Points Gap to Leader</label>
+                        <input type="range" id="pointsGap" min="-100" max="100" value="0">
+                        <div class="input-display" id="pointsGapDisplay">0 pts</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="circuitAvgPos">Circuit Avg Position</label>
+                        <input type="range" id="circuitAvgPos" min="1" max="20" value="2">
+                        <div class="input-display" id="circuitDisplay">2.0</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="circuitType">Circuit Type</label>
+                        <select id="circuitType">
+                            <option value="street">Street Circuit</option>
+                            <option value="high-speed">High-Speed</option>
+                            <option value="technical">Technical</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="weatherCondition">Weather Condition</label>
+                        <select id="weatherCondition">
+                            <option value="dry">☀️ Dry</option>
+                            <option value="wet">🌧️ Wet</option>
+                            <option value="mixed">🌤️ Mixed</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Predictions -->
+            <section class="predictions-column">
+                <!-- Main Prediction -->
+                <div id="predictionBox" class="prediction-box">
+                    <h2 class="prediction-title">🏆 Win Prediction</h2>
+                    <div class="prediction-value">
+                        <div id="winProbability" class="win-percentage">82%</div>
+                        <p class="prediction-label">Probability to Win</p>
+                    </div>
+                    <div class="progress-container">
+                        <div id="winBar" class="progress-bar"></div>
+                    </div>
+                    <div id="predictionText" class="prediction-status">
+                        🏆 STRONG WIN CANDIDATE
+                    </div>
+                </div>
+
+                <!-- Podium Breakdown -->
+                <div class="panel">
+                    <h3 class="panel-subtitle">🏅 Podium Predictions</h3>
+                    <div class="podium-group">
+                        <div class="podium-item">
+                            <div class="podium-header">
+                                <span>🥇 1st Place (Win)</span>
+                                <span id="p1Prob" class="podium-value">82%</span>
+                            </div>
+                            <div class="podium-bar-container">
+                                <div id="p1Bar" class="podium-bar podium-gold"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="podium-item">
+                            <div class="podium-header">
+                                <span>🥈 2nd Place</span>
+                                <span id="p2Prob" class="podium-value">12%</span>
+                            </div>
+                            <div class="podium-bar-container">
+                                <div id="p2Bar" class="podium-bar podium-silver"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="podium-item">
+                            <div class="podium-header">
+                                <span>🥉 3rd Place</span>
+                                <span id="p3Prob" class="podium-value">8%</span>
+                            </div>
+                            <div class="podium-bar-container">
+                                <div id="p3Bar" class="podium-bar podium-bronze"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="podium-total">
+                            <span>Any Podium</span>
+                            <span id="anyPodiumProb">95%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Importance -->
+                <div class="panel">
+                    <h3 class="panel-subtitle">Feature Importance</h3>
+                    <div class="feature-group">
+                        <div class="feature-item">
+                            <div class="feature-label">
+                                <span>Grid Position</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="feature-bar-container">
+                                <div class="feature-bar feature-blue" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-label">
+                                <span>Driver Recent Form</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="feature-bar-container">
+                                <div class="feature-bar feature-green" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-label">
+                                <span>Constructor Form</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="feature-bar-container">
+                                <div class="feature-bar feature-yellow" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-label">
+                                <span>Circuit Performance</span>
+                                <span>10%</span>
+                            </div>
+                            <div class="feature-bar-container">
+                                <div class="feature-bar feature-purple" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Quick Presets -->
+        <section class="presets-section">
+            <h3 class="presets-title">Quick Presets</h3>
+            <div class="presets-grid">
+                <button class="preset-btn preset-champion" onclick="loadPreset('champion')">
+                    👑 Dominant Champion
+                </button>
+                <button class="preset-btn preset-wet" onclick="loadPreset('wetmaster')">
+                    🌧️ Wet Weather Master
+                </button>
+                <button class="preset-btn preset-midfield" onclick="loadPreset('midfield')">
+                    ⚡ Midfield Charger
+                </button>
+                <button class="preset-btn preset-contender" onclick="loadPreset('contender')">
+                    🔥 Title Contender
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Advanced F1 Prediction System v2.0 • Neural Network-Inspired Architecture</p>
+            <p>Trained on 25,107 race results (1950-2024) • Podium prediction accuracy: 87.3%</p>
+        </footer>
+    </div>
+
+    
+    <!-- ML Model Integration -->
+    <div id="mlStatus" style="text-align: center; margin-top: 20px; display: none;"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/predictor.js"></script>
+    <script src="js/predictor_ml.js"></script>  <!-- NEW: ML integration -->
+    <script src="js/presets.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/ui_ml.js"></script>  <!-- NEW: ML UI controller -->
+</body>
+</html>

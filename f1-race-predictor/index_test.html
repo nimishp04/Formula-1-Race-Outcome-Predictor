@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Strategy Center - AI Powered</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23000'/%3E%3Cpath d='M20,50 L35,45 L60,45 L80,50 L85,52 L80,54 L60,55 L35,55 Z' fill='%23e10600'/%3E%3Ccircle cx='40' cy='56' r='8' fill='%23000' stroke='%2300d4ff' stroke-width='2'/%3E%3Ccircle cx='75' cy='56' r='8' fill='%23000' stroke='%2300d4ff' stroke-width='2'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --crimson: #dc143c;
+            --violet: #8b5cf6;
+            --midnight: #0f0f23;
+            --neon-blue: #00d4ff;
+            --neon-pink: #ff006e;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* F1 Car Background */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 30% 50%, rgba(220,20,60,0.15), transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.15), transparent 50%),
+                        linear-gradient(135deg, var(--midnight), #000, var(--midnight));
+        }
+        
+        .f1-car-bg {
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 70%;
+            height: 80%;
+            opacity: 0.4;
+            background: radial-gradient(ellipse at center, rgba(0,212,255,0.3), transparent 40%);
+        }
+        
+        .motion-streaks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .streak {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0.3;
+            animation: streakMove 3s linear infinite;
+        }
+        
+        .streak:nth-child(1) { top: 20%; animation-delay: 0s; width: 300px; }
+        .streak:nth-child(2) { top: 40%; animation-delay: 0.8s; width: 250px; }
+        .streak:nth-child(3) { top: 60%; animation-delay: 1.6s; width: 280px; }
+        .streak:nth-child(4) { top: 80%; animation-delay: 2.4s; width: 220px; }
+        
+        @keyframes streakMove {
+            from { left: 100%; }
+            to { left: -400px; }
+        }
+        
+        /* Loading Animation */
+        #loadingScreen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(220,20,60,0.1), #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeOut 0.8s ease 2.2s forwards;
+        }
+        
+        @keyframes fadeOut {
+            to { opacity: 0; pointer-events: none; }
+        }
+        
+        .loading-car { animation: carZoom 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        
+        @keyframes carZoom {
+            0% { transform: translateX(-800px) scale(0.2); opacity: 0; filter: blur(10px); }
+            70% { transform: translateX(0) scale(1.15); opacity: 1; filter: blur(0); }
+            100% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0); }
+        }
+        
+        .loading-text {
+            position: absolute;
+            bottom: 35%;
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        #mainContent {
+            opacity: 0;
+            animation: contentFadeIn 1s ease 2.2s forwards;
+        }
+        
+        @keyframes contentFadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Glassmorphism Header */
+        .glass-header {
+            background: linear-gradient(135deg, rgba(220,20,60,0.1), rgba(139,92,246,0.1));
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 30px;
+            padding: 50px 40px;
+            margin: 30px auto 40px;
+            max-width: 1800px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.37), inset 0 1px 0 rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--crimson), var(--violet), var(--neon-blue));
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientShift 6s ease infinite;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            letter-spacing: 2px;
+        }
+        
+        #mlStatus {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 28px;
+            background: rgba(16,185,129,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16,185,129,0.4);
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 0 30px rgba(16,185,129,0.3);
+        }
+        
+        .container { max-width: 1800px; margin: 0 auto; padding: 30px; }
+        
+        /* Conditions */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.37), inset 0 1px 0 rgba(255,255,255,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--crimson), var(--violet), var(--neon-blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .condition-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .condition-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,212,255,0.4);
+            box-shadow: 0 8px 32px rgba(0,212,255,0.15);
+        }
+        
+        .condition-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #334155, var(--neon-blue));
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--neon-blue);
+            transition: all 0.2s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 25px var(--neon-blue);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--neon-blue);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        .condition-value {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-top: 10px;
+            text-shadow: 0 0 15px rgba(0,212,255,0.6);
+        }
+        
+        /* Add Driver Button */
+        .add-driver-btn {
+            background: linear-gradient(135deg, var(--crimson), var(--neon-pink));
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(220,20,60,0.4);
+            text-transform: uppercase;
+        }
+        
+        .add-driver-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(220,20,60,0.6);
+        }
+        
+        /* Driver Cards */
+        .drivers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .driver-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+            backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.37), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .driver-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0,212,255,0.5);
+            box-shadow: 0 20px 60px rgba(0,212,255,0.25);
+        }
+        
+        .driver-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .driver-name-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--neon-blue);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Exo 2', sans-serif;
+            padding: 8px 0;
+            width: 240px;
+        }
+        
+        .driver-name-input:focus {
+            outline: none;
+            border-bottom-color: var(--crimson);
+        }
+        
+        .driver-number {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(220,20,60,0.2), rgba(0,212,255,0.2));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.4);
+            border-radius: 50%;
+            color: #ef4444;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: rgba(239,68,68,0.3);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(239,68,68,0.5);
+        }
+        
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .input-field {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0,212,255,0.2);
+            background: rgba(0,212,255,0.05);
+        }
+        
+        .driver-prediction {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .win-prob-badge {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, var(--neon-blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        /* Calculate Button */
+        .calculate-btn {
+            display: block;
+            margin: 50px auto;
+            padding: 22px 60px;
+            background: linear-gradient(135deg, var(--crimson), var(--neon-pink));
+            border: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 8px 30px rgba(220,20,60,0.5);
+            transition: all 0.3s;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(220,20,60,0.7);
+        }
+        
+        /* Podium */
+        .podium-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+            height: 350px;
+        }
+        
+        .podium-stand {
+            flex: 1;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            transition: all 0.5s;
+        }
+        
+        .podium-stand:hover { transform: translateY(-15px); }
+        
+        .podium-block {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px 20px 0 0;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 -8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .podium-p1 {
+            height: 100%;
+            border-color: rgba(255,215,0,0.5);
+            box-shadow: 0 -8px 32px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.2);
+        }
+        
+        .podium-p2 { height: 85%; }
+        .podium-p3 { height: 70%; }
+        
+        .podium-medal {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: medalFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes medalFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .podium-driver {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .podium-prob {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, var(--neon-blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        /* Insights */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .insight-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,212,255,0.25);
+        }
+        
+        .insight-icon { font-size: 3.5rem; margin-bottom: 15px; }
+        .insight-title { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 12px; text-transform: uppercase; }
+        .insight-value { font-size: 2.2rem; font-weight: 900; margin-bottom: 8px; }
+        .insight-detail { font-size: 1.1rem; font-weight: 600; }
+        
+        .insight-winner { border-color: rgba(16,185,129,0.4); }
+        .insight-winner .insight-value { color: #10b981; }
+        .insight-dark { border-color: rgba(139,92,246,0.4); }
+        .insight-dark .insight-value { color: #8b5cf6; }
+        .insight-safe { border-color: rgba(245,158,11,0.4); }
+        .insight-safe .insight-value { color: #f59e0b; }
+        .insight-long { border-color: rgba(239,68,68,0.4); }
+        .insight-long .insight-value { color: #ef4444; }
+        
+        @media (max-width: 1024px) {
+            .title { font-size: 2.5rem; }
+            .drivers-grid { grid-template-columns: 1fr; }
+            .podium-container { flex-direction: column; height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <div class="f1-car-bg"></div>
+        <div class="motion-streaks">
+            <div class="streak"></div>
+            <div class="streak"></div>
+            <div class="streak"></div>
+            <div class="streak"></div>
+        </div>
+    </div>
+
+    <div id="loadingScreen">
+        <svg class="loading-car" width="500" height="200" viewBox="0 0 500 200">
+            <defs>
+                <linearGradient id="loadCarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#dc143c"/>
+                    <stop offset="50%" stop-color="#ffd700"/>
+                    <stop offset="100%" stop-color="#00d4ff"/>
+                </linearGradient>
+            </defs>
+            <path d="M80,100 L160,85 L300,85 L420,100 L480,110 L420,120 L300,125 L160,125 Z" 
+                  fill="url(#loadCarGrad)" stroke="#fff" stroke-width="4"/>
+            <rect x="460" y="102" width="60" height="4" fill="#00d4ff"/>
+            <rect x="460" y="114" width="60" height="4" fill="#00d4ff"/>
+            <circle cx="170" cy="130" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+            <circle cx="400" cy="130" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+            <circle cx="170" cy="80" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+            <circle cx="400" cy="80" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+            <ellipse cx="260" cy="105" rx="50" ry="25" fill="rgba(0,212,255,0.4)"/>
+        </svg>
+        <div class="loading-text">Initializing Neural Network</div>
+    </div>
+
+    <div id="mainContent">
+        <div class="glass-header">
+            <h1 class="title">F1 Strategy Center</h1>
+            <p class="subtitle">Neural Network Powered • Multi-Driver Analysis • Real-Time Predictions</p>
+            <div id="mlStatus">● Connecting...</div>
+        </div>
+
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="section-header">🌍 Race Environment</h2>
+                <div class="conditions-grid">
+                    <div class="condition-card">
+                        <div class="condition-label">🌡️ Track Temperature</div>
+                        <input type="range" id="trackTemp" min="15" max="55" value="32" 
+                               oninput="document.getElementById('trackTempValue').textContent = this.value + '°C'">
+                        <div class="condition-value" id="trackTempValue">32°C</div>
+                    </div>
+                    
+                    <div class="condition-card">
+                        <div class="condition-label">🌧️ Rain Probability</div>
+                        <input type="range" id="rainProb" min="0" max="100" value="10"
+                               oninput="document.getElementById('rainProbValue').textContent = this.value + '%'">
+                        <div class="condition-value" id="rainProbValue">10%</div>
+                    </div>
+                    
+                    <div class="condition-card">
+                        <div class="condition-label">🗺️ Circuit Type</div>
+                        <select id="circuitType">
+                            <option value="street">Street Circuit</option>
+                            <option value="high-speed">High-Speed Track</option>
+                            <option value="technical">Technical Circuit</option>
+                            <option value="mixed">Mixed Characteristics</option>
+                        </select>
+                    </div>
+                    
+                    <div class="condition-card">
+                        <div class="condition-label">☀️ Weather Condition</div>
+                        <select id="weatherCondition">
+                            <option value="dry">Dry</option>
+                            <option value="wet">Wet</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 class="section-header" style="margin: 0;">🏎️ Driver Lineup</h2>
+                <button class="add-driver-btn" onclick="addDriver()">+ Add Driver</button>
+            </div>
+            
+            <div class="drivers-grid" id="driversGrid"></div>
+
+            <button class="calculate-btn" onclick="calculateRace()">
+                🚀 Calculate Race Predictions
+            </button>
+
+            <div id="resultsSection" style="display: none;">
+                <div class="glass-card">
+                    <h2 class="section-header">🏆 Race Outcome Forecast</h2>
+                    <div class="podium-container" id="podiumContainer"></div>
+                    <div class="insights-grid" id="insightsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';
+        let apiAvailable = false;
+        let drivers = [];
+        let driverIdCounter = 0;
+        
+        async function checkAPI() {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                apiAvailable = data.status === 'healthy';
+                document.getElementById('mlStatus').textContent = apiAvailable ? 
+                    '● Neural Network Active (95.54%)' : '● Fallback Mode';
+            } catch {
+                apiAvailable = false;
+                document.getElementById('mlStatus').textContent = '● Offline Mode';
+            }
+        }
+        
+        function addDriver() {
+            const id = driverIdCounter++;
+            const num = drivers.length + 1;
+            
+            drivers.push({
+                id: id,
+                name: `Driver ${num}`,
+                gridPosition: num,
+                qualifyingGap: num * 0.1,
+                driverAvgPos: Math.min(num + 1, 20),
+                recentWins: Math.max(5 - num, 0),
+                recentPodiums: Math.max(5 - Math.floor(num / 2), 0),
+                fastestLapRate: Math.max(50 - num * 5, 5)
+            });
+            
+            console.log('✓ Added driver:', drivers[drivers.length - 1].name);
+            renderDrivers();
+        }
+        
+        function updateDriver(id, field, value) {
+            const driver = drivers.find(d => d.id === id);
+            if (driver) {
+                driver[field] = value;
+                console.log('✓ Updated:', field, '=', value);
+            }
+        }
+        
+        function removeDriver(id) {
+            console.log('✓ Removing driver:', id);
+            drivers = drivers.filter(d => d.id !== id);
+            renderDrivers();
+        }
+        
+        function renderDrivers() {
+            const container = document.getElementById('driversGrid');
+            container.innerHTML = drivers.map((d, idx) => `
+                <div class="driver-card">
+                    <div class="driver-header">
+                        <input type="text" class="driver-name-input" value="${d.name}" 
+                               oninput="updateDriver(${d.id}, 'name', this.value)">
+                        <div class="driver-number">${idx + 1}</div>
+                    </div>
+                    <div class="remove-btn" onclick="removeDriver(${d.id})">×</div>
+                    
+                    <div class="inputs-grid">
+                        <div class="input-group">
+                            <label>Grid Position</label>
+                            <input type="number" class="input-field" min="1" max="20" value="${d.gridPosition}"
+                                   oninput="updateDriver(${d.id}, 'gridPosition', parseInt(this.value))">
+                        </div>
+                        <div class="input-group">
+                            <label>Qualifying Gap (s)</label>
+                            <input type="number" class="input-field" min="0" max="5" step="0.01" value="${d.qualifyingGap}"
+                                   oninput="updateDriver(${d.id}, 'qualifyingGap', parseFloat(this.value))">
+                        </div>
+                        <div class="input-group">
+                            <label>Avg Position (L5)</label>
+                            <input type="number" class="input-field" min="1" max="20" step="0.1" value="${d.driverAvgPos}"
+                                   oninput="updateDriver(${d.id}, 'driverAvgPos', parseFloat(this.value))">
+                        </div>
+                        <div class="input-group">
+                            <label>Recent Wins (L5)</label>
+                            <input type="number" class="input-field" min="0" max="5" value="${d.recentWins}"
+                                   oninput="updateDriver(${d.id}, 'recentWins', parseInt(this.value))">
+                        </div>
+                        <div class="input-group">
+                            <label>Podiums (L5)</label>
+                            <input type="number" class="input-field" min="0" max="5" value="${d.recentPodiums}"
+                                   oninput="updateDriver(${d.id}, 'recentPodiums', parseInt(this.value))">
+                        </div>
+                        <div class="input-group">
+                            <label>Fastest Lap (%)</label>
+                            <input type="number" class="input-field" min="0" max="100" value="${d.fastestLapRate}"
+                                   oninput="updateDriver(${d.id}, 'fastestLapRate', parseInt(this.value))">
+                        </div>
+                    </div>
+                    
+                    <div class="driver-prediction">
+                        <div class="win-prob-badge" id="winProb${d.id}">--%</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 8px; text-transform: uppercase;">Win Probability</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        async function predictDriver(driver) {
+            if (apiAvailable) {
+                try {
+                    const res = await fetch(`${API_URL}/predict`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            gridPosition: driver.gridPosition,
+                            driverAvgPos: driver.driverAvgPos,
+                            recentWins: driver.recentWins,
+                            recentPodiums: driver.recentPodiums,
+                            constructorAvgPos: Math.max(1, driver.driverAvgPos - 0.5),
+                            circuitAvgPos: driver.driverAvgPos,
+                            fastestLapRate: driver.fastestLapRate,
+                            finishRate: 95
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.success) return data.predictions.win_probability_percent;
+                } catch (e) {}
+            }
+            
+            // Fallback
+            const rain = parseInt(document.getElementById('rainProb').value);
+            const rainBoost = rain > 50 && driver.driverAvgPos <= 5 ? 1.15 : 1;
+            let score = Math.exp(-0.15 * (driver.gridPosition - 1)) * 40;
+            score += driver.recentWins * 8;
+            score += (driver.recentPodiums / 5) * 12;
+            score += Math.max(0, (10 - driver.driverAvgPos) * 1.5);
+            score += (driver.fastestLapRate / 100) * 8;
+            return Math.min(Math.round(score * rainBoost), 100);
+        }
+        
+        async function calculateRace() {
+            if (drivers.length === 0) { alert('Please add at least one driver!'); return; }
+            
+            const predictions = [];
+            for (const driver of drivers) {
+                const winProb = await predictDriver(driver);
+                predictions.push({ ...driver, winProb });
+                const el = document.getElementById(`winProb${driver.id}`);
+                if (el) el.textContent = `${winProb}%`;
+            }
+            
+            predictions.sort((a, b) => b.winProb - a.winProb);
+            
+            // Render podium
+            const podium = document.getElementById('podiumContainer');
+            const top3 = predictions.slice(0, 3);
+            const order = [1, 0, 2];
+            const medals = ['🥇', '🥈', '🥉'];
+            const classes = ['podium-p1', 'podium-p2', 'podium-p3'];
+            
+            podium.innerHTML = order.map(idx => top3[idx] ? `
+                <div class="podium-stand">
+                    <div class="podium-block ${classes[idx]}">
+                        <div class="podium-medal">${medals[idx]}</div>
+                        <div class="podium-driver">${top3[idx].name}</div>
+                        <div class="podium-prob">${top3[idx].winProb}%</div>
+                        <div style="font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-top: 8px;">Grid P${top3[idx].gridPosition}</div>
+                    </div>
+                </div>
+            ` : '').join('');
+            
+            // Render insights
+            const winner = predictions[0];
+            const darkHorse = predictions.find(p => p.gridPosition >= 6 && p.winProb >= 15);
+            const safeBet = predictions.find(p => p.winProb >= 60);
+            const underdog = predictions[predictions.length - 1];
+            
+            document.getElementById('insightsGrid').innerHTML = `
+                <div class="insight-card insight-winner">
+                    <div class="insight-icon">🏆</div>
+                    <div class="insight-title">Most Likely Winner</div>
+                    <div class="insight-value">${winner.name}</div>
+                    <div class="insight-detail">${winner.winProb}% probability</div>
+                </div>
+                ${darkHorse ? `<div class="insight-card insight-dark">
+                    <div class="insight-icon">⚡</div>
+                    <div class="insight-title">Dark Horse</div>
+                    <div class="insight-value">${darkHorse.name}</div>
+                    <div class="insight-detail">${darkHorse.winProb}% from P${darkHorse.gridPosition}</div>
+                </div>` : ''}
+                ${safeBet ? `<div class="insight-card insight-safe">
+                    <div class="insight-icon">💎</div>
+                    <div class="insight-title">Safe Bet</div>
+                    <div class="insight-value">${safeBet.name}</div>
+                    <div class="insight-detail">${safeBet.winProb}% confidence</div>
+                </div>` : ''}
+                <div class="insight-card insight-long">
+                    <div class="insight-icon">🎯</div>
+                    <div class="insight-title">Longest Odds</div>
+                    <div class="insight-value">${underdog.name}</div>
+                    <div class="insight-detail">${underdog.winProb}% from P${underdog.gridPosition}</div>
+                </div>
+            `;
+            
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Initialize
+        window.onload = function() {
+            console.log('🏁 F1 Strategy Center loaded');
+            addDriver();
+            addDriver();
+            addDriver();
+            checkAPI();
+            console.log('✅ Ready! 3 drivers added');
+        };
+    </script>
+</body>
+</html>

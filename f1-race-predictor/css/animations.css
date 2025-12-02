@@ -1,0 +1,94 @@
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container > * {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Pulse Animation for Prediction Box */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.prediction-box:hover {
+    animation: pulse 2s infinite;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.panel {
+    animation: slideIn 0.8s ease-out;
+}
+
+/* Loading Spinner */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.stat-card:hover .stat-value {
+    animation: bounce 0.6s ease;
+}
+
+/* Glow Effect */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    }
+}
+
+input[type="range"]:focus {
+    animation: glow 1.5s infinite;
+}
+
+/* Progress Bar Animation */
+@keyframes fillBar {
+    from { width: 0; }
+}
+
+.progress-bar, .podium-bar {
+    animation: fillBar 0.8s ease-out;
+}

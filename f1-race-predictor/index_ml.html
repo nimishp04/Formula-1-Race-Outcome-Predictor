@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Strategy Center - AI Powered</title>
+    <!-- Amazing F1 Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23e10600'/><stop offset='50%25' style='stop-color:%23ffd700'/><stop offset='100%25' style='stop-color:%2300d4ff'/></linearGradient></defs><circle cx='50' cy='50' r='48' fill='%23000'/><path d='M20,50 L35,45 L60,45 L80,50 L85,52 L80,54 L60,55 L35,55 Z' fill='url(%23g1)'/><circle cx='40' cy='56' r='8' fill='%23000' stroke='%2300d4ff' stroke-width='2'/><circle cx='75' cy='56' r='8' fill='%23000' stroke='%2300d4ff' stroke-width='2'/><rect x='82' y='49' width='8' height='2' fill='%2300d4ff'/><rect x='82' y='53' width='8' height='2' fill='%2300d4ff'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --crimson: #dc143c;
+            --violet: #8b5cf6;
+            --midnight: #0f0f23;
+            --neon-blue: #00d4ff;
+            --neon-pink: #ff006e;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Full-Screen F1 Car Background */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-image {
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(220,20,60,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(139,92,246,0.15) 0%, transparent 50%),
+                linear-gradient(135deg, var(--midnight) 0%, #000 50%, var(--midnight) 100%);
+            position: relative;
+        }
+        
+        /* Simulated F1 car with cinematic lighting */
+        .f1-car-bg {
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 70%;
+            height: 80%;
+            background: 
+                radial-gradient(ellipse at center, rgba(0,212,255,0.3) 0%, transparent 40%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><defs><linearGradient id="carShine" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23dc143c;stop-opacity:0.8"/><stop offset="50%" style="stop-color:%23000;stop-opacity:0.9"/><stop offset="100%" style="stop-color:%2300d4ff;stop-opacity:0.6"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="4" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(%23glow)"><path d="M100,200 L200,180 L400,180 L600,200 L700,220 L600,240 L400,240 L200,240 Z" fill="url(%23carShine)" stroke="%2300d4ff" stroke-width="3" opacity="0.6"/><ellipse cx="250" cy="210" rx="60" ry="30" fill="%23000" opacity="0.8"/><ellipse cx="550" cy="210" rx="60" ry="30" fill="%23000" opacity="0.8"/><rect x="680" y="200" width="80" height="6" fill="%2300d4ff" opacity="0.8"/><rect x="680" y="214" width="80" height="6" fill="%2300d4ff" opacity="0.8"/><path d="M150,160 L250,155 L280,160 L250,165 Z" fill="%23dc143c" opacity="0.7"/></g></svg>') center/contain no-repeat;
+            opacity: 0.4;
+            filter: blur(1px);
+            animation: carRevs 4s ease-in-out infinite;
+        }
+        
+        @keyframes carRevs {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(15px) scale(1.02); }
+        }
+        
+        /* Motion blur streaks */
+        .motion-streaks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        
+        .streak {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0.3;
+            animation: streakMove 3s linear infinite;
+        }
+        
+        .streak:nth-child(1) { top: 20%; animation-delay: 0s; width: 300px; }
+        .streak:nth-child(2) { top: 40%; animation-delay: 0.8s; width: 250px; }
+        .streak:nth-child(3) { top: 60%; animation-delay: 1.6s; width: 280px; }
+        .streak:nth-child(4) { top: 80%; animation-delay: 2.4s; width: 220px; }
+        
+        @keyframes streakMove {
+            from { left: 100%; }
+            to { left: -400px; }
+        }
+        
+        /* Ambient particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.4;
+        }
+        
+        .particle:nth-child(5) { top: 10%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(6) { top: 30%; left: 60%; animation-delay: 2s; }
+        .particle:nth-child(7) { top: 70%; left: 80%; animation-delay: 4s; }
+        .particle:nth-child(8) { top: 50%; left: 40%; animation-delay: 6s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+            50% { transform: translate(30px, -50px); opacity: 0.6; }
+        }
+        
+        /* Loading Animation */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(220,20,60,0.1) 0%, #000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeOut 0.8s ease 2.2s forwards;
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        .loading-car {
+            animation: carZoomIn 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        @keyframes carZoomIn {
+            0% {
+                transform: translateX(-800px) scale(0.2);
+                opacity: 0;
+                filter: blur(10px);
+            }
+            70% {
+                transform: translateX(0) scale(1.15);
+                opacity: 1;
+                filter: blur(0);
+            }
+            100% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+        
+        .loading-streaks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .loading-streak {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            animation: loadStreakMove 0.6s linear infinite;
+        }
+        
+        .loading-streak:nth-child(1) { top: 40%; width: 200px; animation-delay: 0s; }
+        .loading-streak:nth-child(2) { top: 50%; width: 250px; animation-delay: 0.2s; }
+        .loading-streak:nth-child(3) { top: 60%; width: 180px; animation-delay: 0.4s; }
+        
+        @keyframes loadStreakMove {
+            from { left: 100%; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            to { left: -300px; opacity: 0; }
+        }
+        
+        .loading-text {
+            position: absolute;
+            bottom: 35%;
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.5; letter-spacing: 4px; }
+            50% { opacity: 1; letter-spacing: 6px; }
+        }
+        
+        /* Main Content */
+        #mainContent {
+            opacity: 0;
+            animation: contentFadeIn 1s ease 2.2s forwards;
+        }
+        
+        @keyframes contentFadeIn {
+            to { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+        }
+        
+        /* Glassmorphism Header */
+        .glass-header {
+            background: linear-gradient(135deg, rgba(220,20,60,0.1) 0%, rgba(139,92,246,0.1) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 30px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 8px 32px 0 rgba(0,0,0,0.37),
+                inset 0 1px 0 0 rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+            animation: headerGlow 8s ease-in-out infinite;
+        }
+        
+        @keyframes headerGlow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--crimson) 0%, var(--violet) 50%, var(--neon-blue) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            letter-spacing: 2px;
+        }
+        
+        #mlStatus {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 28px;
+            background: rgba(16,185,129,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16,185,129,0.4);
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 
+                0 0 30px rgba(16,185,129,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: statusGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes statusGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16,185,129,0.3); }
+            50% { box-shadow: 0 0 40px rgba(16,185,129,0.6); }
+        }
+        
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 
+                0 8px 32px 0 rgba(0,0,0,0.37),
+                inset 0 1px 0 0 rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .glass-card:hover::before {
+            left: 100%;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0,212,255,0.4);
+            box-shadow: 
+                0 16px 48px 0 rgba(0,212,255,0.2),
+                0 0 0 1px rgba(0,212,255,0.1),
+                inset 0 1px 0 0 rgba(255,255,255,0.1);
+        }
+        
+        /* Conditions Section */
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .condition-card {
+            background: linear-gradient(135deg, rgba(220,20,60,0.05) 0%, rgba(139,92,246,0.05) 100%);
+            backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 
+                0 4px 24px 0 rgba(0,0,0,0.3),
+                inset 0 1px 0 0 rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .condition-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,212,255,0.3);
+            box-shadow: 
+                0 8px 32px 0 rgba(0,212,255,0.15),
+                inset 0 1px 0 0 rgba(255,255,255,0.1);
+        }
+        
+        .condition-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .condition-icon {
+            font-size: 1.4rem;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+        
+        /* Futuristic Sliders */
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                rgba(139,92,246,0.2) 0%, 
+                rgba(0,212,255,0.4) 50%, 
+                rgba(220,20,60,0.3) 100%);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle, var(--neon-blue) 0%, rgba(0,212,255,0.6) 100%);
+            border: 2px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 
+                0 0 20px var(--neon-blue),
+                0 2px 8px rgba(0,0,0,0.4);
+            transition: all 0.2s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+            box-shadow: 
+                0 0 30px var(--neon-blue),
+                0 4px 12px rgba(0,0,0,0.6);
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:active {
+            transform: scale(1.1);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle, var(--neon-blue), rgba(0,212,255,0.6));
+            border: 2px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        select:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0,212,255,0.2);
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0,212,255,0.3);
+        }
+        
+        .condition-value {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-top: 12px;
+            text-shadow: 0 0 15px rgba(0,212,255,0.6);
+        }
+        
+        /* Section Headers */
+        .section-header {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--crimson), var(--violet), var(--neon-blue));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        /* Add Driver Button */
+        .add-driver-btn {
+            background: linear-gradient(135deg, var(--crimson) 0%, var(--neon-pink) 100%);
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 
+                0 4px 20px rgba(220,20,60,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .add-driver-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 30px rgba(220,20,60,0.6),
+                0 0 40px rgba(220,20,60,0.4);
+        }
+        
+        .add-driver-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+        
+        /* Driver Cards - Floating Glass */
+        .drivers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .driver-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 32px 0 rgba(0,0,0,0.37),
+                inset 0 1px 0 0 rgba(255,255,255,0.1),
+                inset 0 0 60px 0 rgba(0,212,255,0.02);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .driver-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        
+        .driver-card:hover::after {
+            opacity: 1;
+        }
+        
+        .driver-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0,212,255,0.5);
+            box-shadow: 
+                0 20px 60px 0 rgba(0,212,255,0.25),
+                0 0 0 1px rgba(0,212,255,0.2),
+                inset 0 1px 0 0 rgba(255,255,255,0.2);
+        }
+        
+        .driver-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .driver-name-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--neon-blue);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Exo 2', sans-serif;
+            padding: 8px 0;
+            width: 240px;
+            transition: all 0.3s;
+        }
+        
+        .driver-name-input:focus {
+            outline: none;
+            border-bottom-color: var(--crimson);
+            text-shadow: 0 0 15px rgba(220,20,60,0.6);
+        }
+        
+        .driver-number {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(220,20,60,0.2), rgba(0,212,255,0.2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(239,68,68,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239,68,68,0.4);
+            border-radius: 50%;
+            color: #ef4444;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: rgba(239,68,68,0.3);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(239,68,68,0.5);
+        }
+        
+        /* Input Fields */
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .input-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .input-field {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 
+                0 0 20px rgba(0,212,255,0.2),
+                inset 0 0 10px rgba(0,212,255,0.05);
+            background: rgba(0,212,255,0.05);
+        }
+        
+        /* Driver Win Probability Display */
+        .driver-prediction {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .win-prob-badge {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,212,255,0.15));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 50px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            box-shadow: 
+                0 4px 20px rgba(255,215,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .prob-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Calculate Button */
+        .calculate-btn {
+            display: block;
+            margin: 50px auto;
+            padding: 22px 60px;
+            background: linear-gradient(135deg, var(--crimson), var(--neon-pink));
+            border: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                0 8px 30px rgba(220,20,60,0.5),
+                inset 0 2px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .calculate-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .calculate-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 40px rgba(220,20,60,0.7),
+                0 0 60px rgba(220,20,60,0.4),
+                inset 0 2px 0 rgba(255,255,255,0.3);
+        }
+        
+        .calculate-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Results Section */
+        .results-section {
+            margin-top: 60px;
+            animation: slideUp 0.8s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Podium Visualization */
+        .podium-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+            height: 350px;
+        }
+        
+        .podium-stand {
+            flex: 1;
+            max-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .podium-stand:hover {
+            transform: translateY(-15px);
+        }
+        
+        .podium-block {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px 20px 0 0;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 
+                0 -8px 32px 0 rgba(0,0,0,0.3),
+                inset 0 1px 0 0 rgba(255,255,255,0.1);
+            transition: all 0.5s;
+        }
+        
+        .podium-p1 {
+            height: 100%;
+            border-color: rgba(255,215,0,0.5);
+            box-shadow: 
+                0 -8px 32px 0 rgba(255,215,0,0.3),
+                0 0 60px rgba(255,215,0,0.2),
+                inset 0 1px 0 0 rgba(255,255,255,0.2);
+        }
+        
+        .podium-p1 .podium-medal {
+            font-size: 4rem;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+        
+        .podium-p2 {
+            height: 85%;
+            border-color: rgba(192,192,192,0.4);
+        }
+        
+        .podium-p3 {
+            height: 70%;
+            border-color: rgba(205,127,50,0.4);
+        }
+        
+        .podium-medal {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: medalFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes medalFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .podium-driver {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .podium-prob {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .podium-grid {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+        }
+        
+        /* Insight Cards */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .insight-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: 
+                0 4px 24px 0 rgba(0,0,0,0.3),
+                inset 0 1px 0 0 rgba(255,255,255,0.08);
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 12px 40px 0 rgba(0,212,255,0.25),
+                inset 0 1px 0 0 rgba(255,255,255,0.15);
+        }
+        
+        .insight-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 15px currentColor);
+        }
+        
+        .insight-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .insight-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        
+        .insight-detail {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .insight-winner { border-color: rgba(16,185,129,0.4); }
+        .insight-winner .insight-value { color: #10b981; }
+        
+        .insight-dark { border-color: rgba(139,92,246,0.4); }
+        .insight-dark .insight-value { color: #8b5cf6; }
+        
+        .insight-safe { border-color: rgba(245,158,11,0.4); }
+        .insight-safe .insight-value { color: #f59e0b; }
+        
+        .insight-long { border-color: rgba(239,68,68,0.4); }
+        .insight-long .insight-value { color: #ef4444; }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .title { font-size: 2.5rem; }
+            .drivers-grid { grid-template-columns: 1fr; }
+            .podium-container { flex-direction: column; height: auto; }
+            .podium-stand { width: 100%; max-width: 300px; height: 200px !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background with F1 Car -->
+    <div class="bg-container">
+        <div class="bg-image">
+            <div class="f1-car-bg"></div>
+            <div class="motion-streaks">
+                <div class="streak"></div>
+                <div class="streak"></div>
+                <div class="streak"></div>
+                <div class="streak"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loading-streaks">
+            <div class="loading-streak"></div>
+            <div class="loading-streak"></div>
+            <div class="loading-streak"></div>
+        </div>
+        <svg class="loading-car" width="500" height="200" viewBox="0 0 500 200">
+            <defs>
+                <linearGradient id="loadCarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#dc143c"/>
+                    <stop offset="50%" style="stop-color:#ffd700"/>
+                    <stop offset="100%" style="stop-color:#00d4ff"/>
+                </linearGradient>
+                <filter id="carGlow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <g filter="url(#carGlow)">
+                <path d="M80,100 L160,85 L300,85 L420,100 L480,110 L420,120 L300,125 L160,125 Z" 
+                      fill="url(#loadCarGrad)" stroke="#fff" stroke-width="4"/>
+                <rect x="460" y="102" width="60" height="4" fill="#00d4ff"/>
+                <rect x="460" y="114" width="60" height="4" fill="#00d4ff"/>
+                <rect x="100" y="70" width="50" height="5" fill="#dc143c"/>
+                <rect x="100" y="125" width="50" height="5" fill="#dc143c"/>
+                <circle cx="170" cy="130" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+                <circle cx="400" cy="130" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+                <circle cx="170" cy="80" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+                <circle cx="400" cy="80" r="20" fill="#1a1a1a" stroke="#00d4ff" stroke-width="4"/>
+                <ellipse cx="260" cy="105" rx="50" ry="25" fill="rgba(0,212,255,0.4)"/>
+            </g>
+        </svg>
+        <div class="loading-text">Initializing Neural Network</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <div class="container">
+            <!-- Glassmorphism Header -->
+            <div class="glass-header">
+                <div class="header-content">
+                    <h1 class="title">F1 Strategy Center</h1>
+                    <p class="subtitle">Neural Network Powered • Multi-Driver Analysis • Real-Time Predictions</p>
+                    <div id="mlStatus">● Connecting to AI Model...</div>
+                </div>
+            </div>
+
+            <!-- Race Conditions -->
+            <div class="glass-card" style="margin-bottom: 40px;">
+                <h2 class="section-header">🌍 Race Environment</h2>
+                <div class="conditions-grid">
+                    <div class="condition-card">
+                        <div class="condition-label">
+                            <span class="condition-icon">🌡️</span>
+                            Track Temperature
+                        </div>
+                        <input type="range" id="trackTemp" min="15" max="55" value="32">
+                        <div class="condition-value" id="trackTempValue">32°C</div>
+                    </div>
+                    
+                    <div class="condition-card">
+                        <div class="condition-label">
+                            <span class="condition-icon">🌧️</span>
+                            Rain Probability
+                        </div>
+                        <input type="range" id="rainProb" min="0" max="100" value="10">
+                        <div class="condition-value" id="rainProbValue">10%</div>
+                    </div>
+                    
+                    <div class="condition-card">
+                        <div class="condition-label">
+                            <span class="condition-icon">🗺️</span>
+                            Circuit Type
+                        </div>
+                        <select id="circuitType">
+                            <option value="street">Street Circuit</option>
+                            <option value="high-speed">High-Speed Track</option>
+                            <option value="technical">Technical Circuit</option>
+                            <option value="mixed">Mixed Characteristics</option>
+                        </select>
+                    </div>
+                    
+                    <div class="condition-card">
+                        <div class="condition-label">
+                            <span class="condition-icon">☀️</span>
+                            Weather Condition
+                        </div>
+                        <select id="weatherCondition">
+                            <option value="dry">Dry</option>
+                            <option value="wet">Wet</option>
+                            <option value="mixed">Mixed Conditions</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drivers Section -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 class="section-header" style="margin: 0;">🏎️ Driver Lineup</h2>
+                <button class="add-driver-btn" onclick="addDriver()">+ Add Driver</button>
+            </div>
+            
+            <div class="drivers-grid" id="driversGrid"></div>
+
+            <!-- Calculate Button -->
+            <button class="calculate-btn" onclick="calculateRace()">
+                <span>🚀 Calculate Race Predictions</span>
+            </button>
+
+            <!-- Results -->
+            <div id="resultsSection" style="display: none;" class="results-section">
+                <div class="glass-card">
+                    <h2 class="section-header">🏆 Race Outcome Forecast</h2>
+                    
+                    <!-- Podium -->
+                    <div class="podium-container" id="podiumContainer"></div>
+                    
+                    <!-- Insights -->
+                    <div class="insights-grid" id="insightsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';
+        let apiAvailable = false;
+        let drivers = [];
+        let driverIdCounter = 0;
+        
+        async function checkAPI() {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                apiAvailable = data.status === 'healthy';
+                document.getElementById('mlStatus').textContent = apiAvailable ? 
+                    '● Neural Network Active (95.54%)' : '● Fallback Mode Active';
+                document.getElementById('mlStatus').style.background = apiAvailable ?
+                    'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)';
+            } catch {
+                apiAvailable = false;
+                document.getElementById('mlStatus').textContent = '● Offline Mode';
+            }
+        }
+        
+        function addDriver() {
+            const id = driverIdCounter++;
+            const num = drivers.length + 1;
+            drivers.push({
+                id, name: `Driver ${num}`, gridPosition: num, qualifyingGap: num * 0.1,
+                driverAvgPos: Math.min(num + 1, 20), recentWins: Math.max(5 - num, 0),
+                recentPodiums: Math.max(5 - Math.floor(num / 2), 0), fastestLapRate: Math.max(50 - num * 5, 5)
+            });
+            renderDrivers();
+        }
+        
+        function removeDriver(id) {
+            drivers = drivers.filter(d => d.id !== id);
+            renderDrivers();
+        }
+        
+        function updateDriver(id, field, value) {
+            const driver = drivers.find(d => d.id === id);
+            if (driver) driver[field] = value;
+        }
+        
+        function renderDrivers() {
+            const grid = document.getElementById('driversGrid');
+            grid.innerHTML = '';
+            
+            drivers.forEach((driver, index) => {
+                // Create card
+                const card = document.createElement('div');
+                card.className = 'driver-card';
+                
+                // Create header
+                const header = document.createElement('div');
+                header.className = 'driver-header';
+                
+                // Name input
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.className = 'driver-name-input';
+                nameInput.value = driver.name;
+                nameInput.addEventListener('change', (e) => {
+                    updateDriver(driver.id, 'name', e.target.value);
+                });
+                
+                // Number badge
+                const numberBadge = document.createElement('div');
+                numberBadge.className = 'driver-number';
+                numberBadge.textContent = index + 1;
+                
+                header.appendChild(nameInput);
+                header.appendChild(numberBadge);
+                
+                // Remove button
+                const removeBtn = document.createElement('div');
+                removeBtn.className = 'remove-btn';
+                removeBtn.textContent = '×';
+                removeBtn.addEventListener('click', () => {
+                    removeDriver(driver.id);
+                });
+                
+                // Inputs grid
+                const inputsGrid = document.createElement('div');
+                inputsGrid.className = 'inputs-grid';
+                
+                // Create all input fields
+                const fields = [
+                    { label: 'Grid Position', field: 'gridPosition', min: 1, max: 20, step: 1, type: 'int' },
+                    { label: 'Qualifying Gap (s)', field: 'qualifyingGap', min: 0, max: 5, step: 0.01, type: 'float' },
+                    { label: 'Avg Position (L5)', field: 'driverAvgPos', min: 1, max: 20, step: 0.1, type: 'float' },
+                    { label: 'Recent Wins (L5)', field: 'recentWins', min: 0, max: 5, step: 1, type: 'int' },
+                    { label: 'Podiums (L5)', field: 'recentPodiums', min: 0, max: 5, step: 1, type: 'int' },
+                    { label: 'Fastest Lap (%)', field: 'fastestLapRate', min: 0, max: 100, step: 1, type: 'int' }
+                ];
+                
+                fields.forEach(fieldDef => {
+                    const inputGroup = document.createElement('div');
+                    inputGroup.className = 'input-group';
+                    
+                    const label = document.createElement('label');
+                    label.className = 'input-label';
+                    label.textContent = fieldDef.label;
+                    
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.className = 'input-field';
+                    input.min = fieldDef.min;
+                    input.max = fieldDef.max;
+                    input.step = fieldDef.step;
+                    input.value = driver[fieldDef.field];
+                    input.addEventListener('change', (e) => {
+                        const value = fieldDef.type === 'int' ? 
+                            parseInt(e.target.value) : 
+                            parseFloat(e.target.value);
+                        updateDriver(driver.id, fieldDef.field, value);
+                    });
+                    
+                    inputGroup.appendChild(label);
+                    inputGroup.appendChild(input);
+                    inputsGrid.appendChild(inputGroup);
+                });
+                
+                // Prediction display
+                const prediction = document.createElement('div');
+                prediction.className = 'driver-prediction';
+                prediction.innerHTML = `
+                    <div class="win-prob-badge" id="winProb${driver.id}">--%</div>
+                    <div class="prob-label">Win Probability</div>
+                `;
+                
+                // Assemble card
+                card.appendChild(header);
+                card.appendChild(removeBtn);
+                card.appendChild(inputsGrid);
+                card.appendChild(prediction);
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        async function predictDriver(driver) {
+            if (apiAvailable) {
+                try {
+                    const res = await fetch(`${API_URL}/predict`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            gridPosition: driver.gridPosition, driverAvgPos: driver.driverAvgPos,
+                            recentWins: driver.recentWins, recentPodiums: driver.recentPodiums,
+                            constructorAvgPos: Math.max(1, driver.driverAvgPos - 0.5),
+                            circuitAvgPos: driver.driverAvgPos, fastestLapRate: driver.fastestLapRate,
+                            finishRate: 95
+                        })
+                    });
+                    const data = await res.json();
+                    if (data.success) return data.predictions.win_probability_percent;
+                } catch (e) {}
+            }
+            
+            // Fallback
+            const rainBoost = parseInt(document.getElementById('rainProb').value) > 50 && driver.driverAvgPos <= 5 ? 1.15 : 1;
+            let score = Math.exp(-0.15 * (driver.gridPosition - 1)) * 40;
+            score += driver.recentWins * 8 + (driver.recentPodiums / 5) * 12;
+            score += Math.max(0, (10 - driver.driverAvgPos) * 1.5);
+            score += (driver.fastestLapRate / 100) * 8;
+            return Math.min(Math.round(score * rainBoost), 100);
+        }
+        
+        async function calculateRace() {
+            if (drivers.length === 0) { alert('Add at least one driver!'); return; }
+            
+            const predictions = [];
+            for (const driver of drivers) {
+                const winProb = await predictDriver(driver);
+                predictions.push({ ...driver, winProb });
+                const el = document.getElementById(`winProb${driver.id}`);
+                if (el) el.textContent = `${winProb}%`;
+            }
+            
+            predictions.sort((a, b) => b.winProb - a.winProb);
+            
+            renderPodium(predictions);
+            renderInsights(predictions);
+            
+            document.getElementById('resultsSection').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+        
+        function renderPodium(predictions) {
+            const container = document.getElementById('podiumContainer');
+            const top3 = predictions.slice(0, 3);
+            const order = [1, 0, 2];
+            const medals = ['🥇', '🥈', '🥉'];
+            const classes = ['podium-p1', 'podium-p2', 'podium-p3'];
+            
+            container.innerHTML = order.map(idx => top3[idx] ? `
+                <div class="podium-stand">
+                    <div class="podium-block ${classes[idx]}">
+                        <div class="podium-medal">${medals[idx]}</div>
+                        <div class="podium-driver">${top3[idx].name}</div>
+                        <div class="podium-prob">${top3[idx].winProb}%</div>
+                        <div class="podium-grid">Grid P${top3[idx].gridPosition}</div>
+                    </div>
+                </div>
+            ` : '').join('');
+        }
+        
+        function renderInsights(predictions) {
+            const grid = document.getElementById('insightsGrid');
+            const winner = predictions[0];
+            const darkHorse = predictions.find(p => p.gridPosition >= 6 && p.winProb >= 15);
+            const safeBet = predictions.find(p => p.winProb >= 60);
+            const underdog = predictions[predictions.length - 1];
+            
+            grid.innerHTML = `
+                <div class="insight-card insight-winner">
+                    <div class="insight-icon">🏆</div>
+                    <div class="insight-title">Most Likely Winner</div>
+                    <div class="insight-value">${winner.name}</div>
+                    <div class="insight-detail">${winner.winProb}% probability</div>
+                </div>
+                ${darkHorse ? `<div class="insight-card insight-dark">
+                    <div class="insight-icon">⚡</div>
+                    <div class="insight-title">Dark Horse</div>
+                    <div class="insight-value">${darkHorse.name}</div>
+                    <div class="insight-detail">${darkHorse.winProb}% from P${darkHorse.gridPosition}</div>
+                </div>` : ''}
+                ${safeBet ? `<div class="insight-card insight-safe">
+                    <div class="insight-icon">💎</div>
+                    <div class="insight-title">Safe Bet</div>
+                    <div class="insight-value">${safeBet.name}</div>
+                    <div class="insight-detail">${safeBet.winProb}% confidence</div>
+                </div>` : ''}
+                <div class="insight-card insight-long">
+                    <div class="insight-icon">🎯</div>
+                    <div class="insight-title">Longest Odds</div>
+                    <div class="insight-value">${underdog.name}</div>
+                    <div class="insight-detail">${underdog.winProb}% from P${underdog.gridPosition}</div>
+                </div>
+            `;
+        }
+        
+        function updateConditions() {
+            document.getElementById('trackTempValue').textContent = document.getElementById('trackTemp').value + '°C';
+            document.getElementById('rainProbValue').textContent = document.getElementById('rainProb').value + '%';
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('trackTemp').addEventListener('input', updateConditions);
+            document.getElementById('rainProb').addEventListener('input', updateConditions);
+            addDriver(); addDriver(); addDriver();
+            checkAPI();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+{
+  "metadata": {
+    "generatedAt": "2025-11-22T23:59:37.674246",
+    "totalRaces": 1125,
+    "totalDrivers": 861,
+    "totalConstructors": 212,
+    "yearRange": {
+      "start": 1950,
+      "end": 2024
+    }
+  },
+  "gridPositionAnalysis": {
+    "P1": {
+      "totalStarts": 1136,
+      "wins": 481,
+      "winRate": 42.34
+    },
+    "P2": {
+      "totalStarts": 1125,
+      "wins": 268,
+      "winRate": 23.82
+    },
+    "P3": {
+      "totalStarts": 1130,
+      "wins": 137,
+      "winRate": 12.12
+    },
+    "P4": {
+      "totalStarts": 1132,
+      "wins": 68,
+      "winRate": 6.01
+    },
+    "P5": {
+      "totalStarts": 1132,
+      "wins": 49,
+      "winRate": 4.33
+    },
+    "P6": {
+      "totalStarts": 1125,
+      "wins": 40,
+      "winRate": 3.56
+    },
+    "P7": {
+      "totalStarts": 1135,
+      "wins": 23,
+      "winRate": 2.03
+    },
+    "P8": {
+      "totalStarts": 1129,
+      "wins": 17,
+      "winRate": 1.51
+    },
+    "P9": {
+      "totalStarts": 1132,
+      "wins": 5,
+      "winRate": 0.44
+    },
+    "P10": {
+      "totalStarts": 1130,
+      "wins": 12,
+      "winRate": 1.06
+    },
+    "P11": {
+      "totalStarts": 1132,
+      "wins": 5,
+      "winRate": 0.44
+    },
+    "P12": {
+      "totalStarts": 1127,
+      "wins": 3,
+      "winRate": 0.27
+    },
+    "P13": {
+      "totalStarts": 1125,
+      "wins": 4,
+      "winRate": 0.36
+    },
+    "P14": {
+      "totalStarts": 1120,
+      "wins": 7,
+      "winRate": 0.62
+    },
+    "P15": {
+      "totalStarts": 1113,
+      "wins": 1,
+      "winRate": 0.09
+    },
+    "P16": {
+      "totalStarts": 1100,
+      "wins": 2,
+      "winRate": 0.18
+    },
+    "P17": {
+      "totalStarts": 1089,
+      "wins": 3,
+      "winRate": 0.28
+    },
+    "P18": {
+      "totalStarts": 1050,
+      "wins": 1,
+      "winRate": 0.1
+    },
+    "P19": {
+      "totalStarts": 1031,
+      "wins": 1,
+      "winRate": 0.1
+    },
+    "P20": {
+      "totalStarts": 975,
+      "wins": 0,
+      "winRate": 0.0
+    }
+  },
+  "topDrivers": [
+    {
+      "name": "Lewis Hamilton",
+      "wins": 105,
+      "nationality": "British"
+    },
+    {
+      "name": "Michael Schumacher",
+      "wins": 91,
+      "nationality": "German"
+    },
+    {
+      "name": "Max Verstappen",
+      "wins": 63,
+      "nationality": "Dutch"
+    },
+    {
+      "name": "Sebastian Vettel",
+      "wins": 53,
+      "nationality": "German"
+    },
+    {
+      "name": "Alain Prost",
+      "wins": 51,
+      "nationality": "French"
+    },
+    {
+      "name": "Ayrton Senna",
+      "wins": 41,
+      "nationality": "Brazilian"
+    },
+    {
+      "name": "Fernando Alonso",
+      "wins": 32,
+      "nationality": "Spanish"
+    },
+    {
+      "name": "Nigel Mansell",
+      "wins": 31,
+      "nationality": "British"
+    },
+    {
+      "name": "Jackie Stewart",
+      "wins": 27,
+      "nationality": "British"
+    },
+    {
+      "name": "Niki Lauda",
+      "wins": 25,
+      "nationality": "Austrian"
+    }
+  ],
+  "topConstructors": [
+    {
+      "name": "Ferrari",
+      "wins": 249,
+      "nationality": "Italian"
+    },
+    {
+      "name": "McLaren",
+      "wins": 185,
+      "nationality": "British"
+    },
+    {
+      "name": "Mercedes",
+      "wins": 129,
+      "nationality": "German"
+    },
+    {
+      "name": "Red Bull",
+      "wins": 122,
+      "nationality": "Austrian"
+    },
+    {
+      "name": "Williams",
+      "wins": 114,
+      "nationality": "British"
+    },
+    {
+      "name": "Team Lotus",
+      "wins": 45,
+      "nationality": "British"
+    },
+    {
+      "name": "Renault",
+      "wins": 35,
+      "nationality": "French"
+    },
+    {
+      "name": "Benetton",
+      "wins": 27,
+      "nationality": "Italian"
+    },
+    {
+      "name": "Tyrrell",
+      "wins": 23,
+      "nationality": "British"
+    },
+    {
+      "name": "Brabham",
+      "wins": 23,
+      "nationality": "British"
+    }
+  ]
+}
