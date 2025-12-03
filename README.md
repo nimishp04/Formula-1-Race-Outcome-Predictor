@@ -194,23 +194,14 @@ curl -X POST http://localhost:5000/predict \
 }
 ```
 
-## Libraries
-
-- pandas (2.0.3) - Data manipulation
-- numpy (1.24.3) - Numerical computations
-- scikit-learn (1.3.0) - ML models and preprocessing
-- xgboost (2.0.3) - Gradient boosting
-- flask (3.0.0) - REST API
-- flask-cors (4.0.0) - CORS support
 
 ## Dataset Source
 
 Ergast F1 Database (1950-2024): https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
 
-## License
 
-MIT
 
 ## Author
 
-[Your Name] - CS 5100 Artificial Intelligence - Fall 2024
+Nimish Poonekar - CS 5100 Fndts of AI - Fall 2025
+Nikhil Shekhawat - CS 5100 Fndts of AI - Fall 2025
